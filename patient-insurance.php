@@ -118,23 +118,61 @@
                 
 <?php
  
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "HealthcareDB";
+ $servername = "localhost";
+ $username = "root";
+ $password = "";
+ $dbname = "HealthcareDB";
+  
+ // Create connection
+  
+ $conn = new mysqli("localhost", "root", "", "HealthcareDB");
+ $sql = 'SELECT * from Insurance_plan';
+ //$sql = "SELECT Patient_ID, First_Name, Last_Name FROM Patient";
+ if (mysqli_query($conn, $sql)) {
+      echo "";
+ } 
+ else {
+  
+     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+ }
+  
+ $count=1;
+ $result = mysqli_query($conn, $sql);
+  
+ if (mysqli_num_rows($result) > 0) {
+ // output data of each row 
+ $x=0;
+ echo "<div class=\"row\">";
+ while($row = mysqli_fetch_assoc($result)) {
+   if($x!=0 && $x%3==0){  // if not first iteration and iteration divided by 3 has no remainder...
+       echo "</div>\n<div class='row'>";
+   }
+   echo "<div class='card col-sm' style='width: 18rem;'>
+   <div class='card-body'>
+     <h5 class='card-title'>";
+       echo $row['Name'];
+     echo "</h5>
+     <h6 class='card-subtitle mb-2 text-muted'>
+       Provider ID: ";echo $row['Provider_ID'];
+     echo "</h6>
+     <p class='card-text'>"; 
+      echo $row['Description'];
+     echo "</p>
+     </a>
+   </div>
+ </div>";
+   ++$x;
+ }
+ echo "</div>";
+ while($row = mysqli_fetch_assoc($result)) { ?>
  
-// Create connection
+ <?php
+ $count++;
+ }
+ } else {
+ echo '0 results';
+ }?>  
  
-$conn = new mysqli("localhost", "root", "", "HealthcareDB");
-$sql = 'SELECT * from Insurance_Plan';
-if (mysqli_query($conn, $sql)) {
- 		echo "";
-} 
-else {
- 
-		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-?> 
 
 
 <!------------------------------------ PHP End---------------------------------------->						
