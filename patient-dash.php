@@ -122,7 +122,7 @@ $dbname = "HealthcareDB";
 // Create connection
  
 $conn = new mysqli("localhost", "root", "", "HealthcareDB");
-$sql = 'SELECT * FROM Patient WHERE Patient_ID = "004a5922-7c4d-40cc-a0f8-68f607044c99"';
+$sql = 'SELECT * FROM Patient WHERE Patient_ID = "0129-4224-9579"';
 if (mysqli_query($conn, $sql)) {
  		echo "";
 } 
