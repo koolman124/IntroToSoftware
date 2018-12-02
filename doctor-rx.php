@@ -111,17 +111,6 @@
  				<th>End Date</th>
  			</tr>
  		</thead>
- 		<tfoot>
- 			<tr>
- 				<th>Prescription ID</th>
- 				<th>Patient ID</th>
-  				<th>Medication ID</th>
- 				<th>Condition ID</th>
-				<th>Pharmacy</th>
- 				<th>Start Date</th>
- 				<th>End Date</th>
- 			</tr>
-		</tfoot>
 
 			<!-- Add table to view current scripts from Prescriptions table -->
 						<!-- Add .JS button to request a refill -->
@@ -166,7 +155,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 					<?php echo $row['Patient_ID']; ?>
 					</td>
 					<td>
-					<?php echo $row['Medication']; ?>
+					<?php echo $row['Medication_ID']; ?>
 					</td>
 					<td>
 					<?php echo $row['Condition_ID']; ?>
