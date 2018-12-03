@@ -12,10 +12,10 @@
     <title>Insurance Dashboard</title>
 
     <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../../css/sb-admin.css" rel="stylesheet">
 
   </head>
 
@@ -95,15 +95,6 @@
 				<th>Description</th>
  			</tr>
  		</thead>
- 		<tfoot>
- 			<tr>
- 				<th>Patient ID</th>
- 				<th>First Name</th>
-  				<th>Last Name</th>
- 				<th>Plan ID</th>
-				<th>Description</th>
- 			</tr>
-		</tfoot>
 
 			<!-- Concatenate Insurance_Plan and Patient_Insurance Tables -->
 						
