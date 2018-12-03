@@ -139,7 +139,7 @@ while($row = mysqli_fetch_assoc($result)) {
   echo "<div class='card col-sm' style='width: 18rem;'>
   <div class='card-body'>
     <h5 class='card-title'>";
-      echo $row['First_Name']; echo $row['Last_Name'];
+      echo $row['First_Name'];?> <?php echo $row['Last_Name'];
     echo "</h5>
     <h6 class='card-subtitle mb-2 text-muted'>
       SSN: ";echo $row['SSN'];
