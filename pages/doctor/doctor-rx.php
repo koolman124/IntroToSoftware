@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Pharmacist Update Medical Info</title>
+    <title>Write a Prescription</title>
 
     <!-- Bootstrap CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,24 +41,31 @@
 	<!-- Dashboard Start -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="pharm-dash.php">
+          <a class="nav-link" href="doctor-dash.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span> View Upcoming Prescriptions</span>
+            <span> Patient Summary</span>
           </a>
         </li>
     <!-- Dashboard End -->
-    <!-- View Med Info Start -->    
+    <!-- Appointment Start -->    
         <li class="nav-item">
-          <a class="nav-link" href="pharm-med.php">
+          <a class="nav-link" href="doctor-cal.php">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Upcoming Appointments</span></a>
+        </li>
+    <!-- Appointment End -->
+     <!-- View Med Info Start -->    
+        <li class="nav-item">
+          <a class="nav-link" href="doctor-med.php">
             <i class="fas fa-fw fa-folder"></i>
             <span>Patient Medical Records</span></a>
         </li>
     <!-- View Med Info End -->
     <!-- Prescription Records Start -->    
         <li class="nav-item">
-          <a class="nav-link" href="pharm-rx.php">
+          <a class="nav-link" href="doctor-rx.php">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Prescription Records</span></a>
+            <span>Prescriptions</span></a>
         </li>
     <!-- Prescription Records End -->
     <!-- Test PHP/mySQL connection -->    
@@ -89,19 +96,28 @@
       <div id="content-wrapper">
 		<div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> Patient Medical Records</div>
+            <div class="card-header"><i class="fas fa-table"></i> Prescriptions</div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered"  width="100%" cellspacing="0">
-		
-		
-<!-- Pass Patient_ID to view Medical Records & populate fields -->
-<!-- Patient Medical Records: Allergy, Condition, Immunization, Surgery, Treatment, -->
-<!-- Medicine, Obsevation Tables -->
-<!-- Forms required to make any adjustments to data, update DB when finished -->
-                
+		<thead>
+ 			<tr>
+ 				<th>Prescription ID</th>
+ 				<th>Patient ID</th>
+  				<th>Medication ID</th>
+ 				<th>Condition ID</th>
+				<th>Pharmacy</th>
+ 				<th>Start Date</th>
+ 				<th>End Date</th>
+ 			</tr>
+ 		</thead>
+
+			<!-- Add table to view current scripts from Prescriptions table -->
+						<!-- Add .JS button to request a refill -->
+						 <!-- Add .JS alert to confirm refill -->
+					 <!-- Add .JS when conflicting scripts are filled -->
 <!------------------------------------ PHP Begin---------------------------------------->
- 
+
                 
 <?php
  
@@ -113,7 +129,8 @@ $dbname = "HealthcareDB";
 // Create connection
  
 $conn = new mysqli("localhost", "root", "", "HealthcareDB");
-$sql = 'SELECT * FROM Patient WHERE Patient_ID = "0129-4224-9579"';
+$sql = 'SELECT * from Prescription';
+
 if (mysqli_query($conn, $sql)) {
  		echo "";
 } 
@@ -122,72 +139,49 @@ else {
 		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
  
+$count=1;
 $result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result); 
-{ ?>
  
-   <tbody>
-                <tr>
-                      <th>Patient ID</th>
-                      <td> <?php echo $row['Patient_ID']; ?> </td>
-                </tr>
-                <tr>  
-                      <th>User ID:</th>
-                      <td></td>    
-                </tr>
-                <tr>
-                      <th>First Name</th>
-                      <td> <?php echo $row['First_Name']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Last Name</th>
-                      <td> <?php echo $row['Last_Name']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Birth Date</th>
-                      <td> <?php echo $row['Birth_Date']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Social Security Number</th>
-                      <td> <?php echo $row['SSN']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Address</th>
-                      <td> <?php echo $row['Address']; ?> </td>
-                </tr>
-                <tr>
-                      <th>City</th>
-                      <td> <?php echo $row['City']; ?> </td>
-                </tr>
-                <tr>
-                      <th>State</th>
-                      <td> <?php echo $row['State']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Zip Code</th>
-                      <td> <?php echo $row['Zip_Code']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Race</th>
-                      <td> <?php echo $row['Race']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Sex</th>
-                      <td> <?php echo $row['Sex']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Phone</th>
-                      <td> <?php echo $row['Phone']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Email</th>
-                      <td> <?php echo $row['Email']; ?> </td>
-                </tr>
-  </tbody>
+if (mysqli_num_rows($result) > 0) {
+// output data of each row 
+while($row = mysqli_fetch_assoc($result)) { ?>
+ 
+ <tbody>
+					<tr>
+					<th> 
+					<?php echo $row['Prescription_ID']; ?>
+					</th>
+					<td>
+					<?php echo $row['Patient_ID']; ?>
+					</td>
+					<td>
+					<?php echo $row['Medication_ID']; ?>
+					</td>
+					<td>
+					<?php echo $row['Condition_ID']; ?>
+					</td>
+					<td>
+					<?php echo $row['Pharmacy_ID']; ?>
+					</td>
+					<td>
+					<?php echo $row['Start_Date']; ?>
+					</td>
+					<td>
+					<?php echo $row['End_Date']; ?>
+					</td>
+					</tr>
+
+
+</tbody>         
 <?php
+$count++;
+}
+} else {
+echo '0 results';
 }?>  
 
 <!------------------------------------ PHP End---------------------------------------->
+
 
 
                 </table>           
@@ -220,12 +214,12 @@ $row = mysqli_fetch_assoc($result);
 <!---------------------------------- Container End -------------------------------------->   
    
     <!-- Bootstrap JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
-    <script src="js/sb-admin.min.js"></script>
-    <script src="js/demo/datatables-demo.js"></script>
-    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../vendor/chart.js/Chart.min.js"></script>
+    <script src="../../vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../../vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="../../js/sb-admin.min.js"></script>
+    <script src="../../js/demo/datatables-demo.js"></script>
+    <script src="../../js/demo/chart-area-demo.js"></script>

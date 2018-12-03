@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Doctor Update Medical Info</title>
+    <title>Insurance Dashboard</title>
 
     <!-- Bootstrap CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,33 +41,19 @@
 	<!-- Dashboard Start -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="doctor-dash.php">
+          <a class="nav-link" href="insurance-dash.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span> Patient Summary</span>
+            <span> View Policyholders</span>
           </a>
         </li>
     <!-- Dashboard End -->
-    <!-- Appointment Start -->    
+    <!-- View Med Info Start -->    
         <li class="nav-item">
-          <a class="nav-link" href="doctor-cal.php">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Upcoming Appointments</span></a>
-        </li>
-    <!-- Appointment End -->
-     <!-- View Med Info Start -->    
-        <li class="nav-item">
-          <a class="nav-link" href="doctor-med.php">
+          <a class="nav-link" href="insurance-med.php">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Patient Medical Records</span></a>
+            <span>Patient Summary</span></a>
         </li>
     <!-- View Med Info End -->
-    <!-- Prescription Records Start -->    
-        <li class="nav-item">
-          <a class="nav-link" href="doctor-rx.php">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Prescriptions</span></a>
-        </li>
-    <!-- Prescription Records End -->
     <!-- Test PHP/mySQL connection -->    
         <li class="nav-item">
           <a class="nav-link" href="testPHP.php">
@@ -83,7 +69,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Login Screens:</h6>
-            <a class="dropdown-item" href="index.html">Login</a>
+            <a class="dropdown-item" href="index.html">Log Out</a>
             <a class="dropdown-item" href="register.html">Register</a>
             <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
           </div>
@@ -96,20 +82,33 @@
       <div id="content-wrapper">
 		<div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> Patient Medical Records</div>
+            <div class="card-header"><i class="fas fa-table"></i> Policyholder</div>
             <div class="card-body">
               <div class="table-responsive">
-              <table class="table table-bordered"  width="100%" cellspacing="0">
+                <table class="table table-bordered"  width="100%" cellspacing="0">
+		<thead>
+ 			<tr>
+ 				<th>Patient ID</th>
+ 				<th>First Name</th>
+  				<th>Last Name</th>
+ 				<th>Plan ID</th>
+				<th>Description</th>
+ 			</tr>
+ 		</thead>
+ 		<tfoot>
+ 			<tr>
+ 				<th>Patient ID</th>
+ 				<th>First Name</th>
+  				<th>Last Name</th>
+ 				<th>Plan ID</th>
+				<th>Description</th>
+ 			</tr>
+		</tfoot>
 
-		
-		
-<!-- Pass Patient_ID to view Medical Records & populate fields -->
-<!-- Patient Medical Records: Allergy, Condition, Immunization, Surgery, Treatment, -->
-<!-- Medicine, Obsevation Tables -->
-<!-- Forms required to make any adjustments to data, update DB when finished -->
-                
+			<!-- Concatenate Insurance_Plan and Patient_Insurance Tables -->
+						
 <!------------------------------------ PHP Begin---------------------------------------->
- 
+
                 
 <?php
  
@@ -121,7 +120,8 @@ $dbname = "HealthcareDB";
 // Create connection
  
 $conn = new mysqli("localhost", "root", "", "HealthcareDB");
-$sql = 'SELECT * FROM Patient WHERE Patient_ID = "0129-4224-9579"';
+$sql = 'SELECT * from Insurance_Plan, Patient_Insurance';
+
 if (mysqli_query($conn, $sql)) {
  		echo "";
 } 
@@ -130,73 +130,45 @@ else {
 		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
  
+$count=1;
 $result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result); 
-{ ?>
-    <tbody>
-                <tr>
-                      <th>Patient ID</th>
-                      <td> <?php echo $row['Patient_ID']; ?> </td>
-                </tr>
-                <tr>  
-                      <th>User ID:</th>
-                      <td></td>    
-                </tr>
-                <tr>
-                      <th>First Name</th>
-                      <td> <?php echo $row['First_Name']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Last Name</th>
-                      <td> <?php echo $row['Last_Name']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Birth Date</th>
-                      <td> <?php echo $row['Birth_Date']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Social Security Number</th>
-                      <td> <?php echo $row['SSN']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Address</th>
-                      <td> <?php echo $row['Address']; ?> </td>
-                </tr>
-                <tr>
-                      <th>City</th>
-                      <td> <?php echo $row['City']; ?> </td>
-                </tr>
-                <tr>
-                      <th>State</th>
-                      <td> <?php echo $row['State']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Zip Code</th>
-                      <td> <?php echo $row['Zip_Code']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Race</th>
-                      <td> <?php echo $row['Race']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Sex</th>
-                      <td> <?php echo $row['Sex']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Phone</th>
-                      <td> <?php echo $row['Phone']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Email</th>
-                      <td> <?php echo $row['Email']; ?> </td>
-                </tr>
-  </tbody>
+ 
+if (mysqli_num_rows($result) > 0) {
+// output data of each row 
+while($row = mysqli_fetch_assoc($result)) { ?>
+ 
+ <tbody>
+					<tr>
+					<th> 
+					<?php echo $row['Patient_ID']; ?>
+					</th>
+					<td>
+					<?php echo $row['First_Name']; ?>
+					</td>
+					<td>
+					<?php echo $row['Last_Name']; ?>
+					</td>
+					<td>
+					<?php echo $row['Plan_ID']; ?>
+					</td>
+					<td>
+					<?php echo $row['Description']; ?>
+					</td>
+					</tr>
+
+</tbody>         
 <?php
+$count++;
+}
+} else {
+echo '0 results';
 }?>  
 
 <!------------------------------------ PHP End---------------------------------------->
 
-                </table>
+
+
+                </table>           
               </div>
             </div>
             <div class="card-footer small text-muted"></div>
@@ -226,12 +198,12 @@ $row = mysqli_fetch_assoc($result);
 <!---------------------------------- Container End -------------------------------------->   
    
     <!-- Bootstrap JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
-    <script src="js/sb-admin.min.js"></script>
-    <script src="js/demo/datatables-demo.js"></script>
-    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../vendor/chart.js/Chart.min.js"></script>
+    <script src="../../vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../../vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="../../js/sb-admin.min.js"></script>
+    <script src="../../js/demo/datatables-demo.js"></script>
+    <script src="../../js/demo/chart-area-demo.js"></script>

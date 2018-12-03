@@ -9,13 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Write a Prescription</title>
+    <title>Doctor Calendar</title>
 
     <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../../css/sb-admin.css" rel="stylesheet">
 
   </head>
 
@@ -83,7 +83,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Login Screens:</h6>
-            <a class="dropdown-item" href="index.html">Log Out</a>
+            <a class="dropdown-item" href="index.html">Login</a>
             <a class="dropdown-item" href="register.html">Register</a>
             <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
           </div>
@@ -96,26 +96,15 @@
       <div id="content-wrapper">
 		<div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> Prescriptions</div>
+            <div class="card-header"><i class="fas fa-table"></i> My Appointments</div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered"  width="100%" cellspacing="0">
-		<thead>
- 			<tr>
- 				<th>Prescription ID</th>
- 				<th>Patient ID</th>
-  				<th>Medication ID</th>
- 				<th>Condition ID</th>
-				<th>Pharmacy</th>
- 				<th>Start Date</th>
- 				<th>End Date</th>
- 			</tr>
- 		</thead>
-
-			<!-- Add table to view current scripts from Prescriptions table -->
-						<!-- Add .JS button to request a refill -->
-						 <!-- Add .JS alert to confirm refill -->
-					 <!-- Add .JS when conflicting scripts are filled -->
+		
+		
+				<!-- Add .JS alert to remind doctot of appointment -->
+				<!-- Add .JS Calendar to view an appointment date -->
+                
 <!------------------------------------ PHP Begin---------------------------------------->
 
                 
@@ -129,8 +118,7 @@ $dbname = "HealthcareDB";
 // Create connection
  
 $conn = new mysqli("localhost", "root", "", "HealthcareDB");
-$sql = 'SELECT * from Prescription';
-
+$sql = 'SELECT * from Appointment';
 if (mysqli_query($conn, $sql)) {
  		echo "";
 } 
@@ -138,51 +126,10 @@ else {
  
 		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
- 
-$count=1;
-$result = mysqli_query($conn, $sql);
- 
-if (mysqli_num_rows($result) > 0) {
-// output data of each row 
-while($row = mysqli_fetch_assoc($result)) { ?>
- 
- <tbody>
-					<tr>
-					<th> 
-					<?php echo $row['Prescription_ID']; ?>
-					</th>
-					<td>
-					<?php echo $row['Patient_ID']; ?>
-					</td>
-					<td>
-					<?php echo $row['Medication_ID']; ?>
-					</td>
-					<td>
-					<?php echo $row['Condition_ID']; ?>
-					</td>
-					<td>
-					<?php echo $row['Pharmacy_ID']; ?>
-					</td>
-					<td>
-					<?php echo $row['Start_Date']; ?>
-					</td>
-					<td>
-					<?php echo $row['End_Date']; ?>
-					</td>
-					</tr>
+?> 
 
-
-</tbody>         
-<?php
-$count++;
-}
-} else {
-echo '0 results';
-}?>  
 
 <!------------------------------------ PHP End---------------------------------------->
-
-
 
                 </table>           
               </div>
@@ -214,12 +161,12 @@ echo '0 results';
 <!---------------------------------- Container End -------------------------------------->   
    
     <!-- Bootstrap JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
-    <script src="js/sb-admin.min.js"></script>
-    <script src="js/demo/datatables-demo.js"></script>
-    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../vendor/chart.js/Chart.min.js"></script>
+    <script src="../../vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../../vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="../../js/sb-admin.min.js"></script>
+    <script src="../../js/demo/datatables-demo.js"></script>
+    <script src="../../js/demo/chart-area-demo.js"></script>

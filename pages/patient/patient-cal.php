@@ -9,13 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Doctor Dashboard</title>
+    <title>Patient - Schedule an Appointment</title>
 
     <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../../css/sb-admin.css" rel="stylesheet">
 
   </head>
 
@@ -23,7 +23,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="doctor-dash.php">EMR Portal</a>
+      <a class="navbar-brand mr-1" href="patient-dash.php">EMR Portal</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -39,35 +39,42 @@
 
 <!------------------------------------Sidebar Start------------------------------------->
 	<!-- Dashboard Start -->
-  <ul class="sidebar navbar-nav">
+      <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="doctor-dash.php">
+          <a class="nav-link" href="patient-dash.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span> Patient Summary</span>
+            <span>Patient Info</span>
           </a>
         </li>
     <!-- Dashboard End -->
     <!-- Appointment Start -->    
         <li class="nav-item">
-          <a class="nav-link" href="doctor-cal.php">
+          <a class="nav-link" href="patient-cal.php">
             <i class="fas fa-fw fa-table"></i>
-            <span>Upcoming Appointments</span></a>
+            <span>Schedule an Appointment</span></a>
         </li>
     <!-- Appointment End -->
      <!-- View Med Info Start -->    
         <li class="nav-item">
-          <a class="nav-link" href="doctor-med.php">
+          <a class="nav-link" href="patient-med.php">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Patient Medical Records</span></a>
+            <span>View Medical Info</span></a>
         </li>
     <!-- View Med Info End -->
     <!-- Prescription Records Start -->    
         <li class="nav-item">
-          <a class="nav-link" href="doctor-rx.php">
+          <a class="nav-link" href="patient-rx.php">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Prescriptions</span></a>
+            <span>Prescription Records</span></a>
         </li>
     <!-- Prescription Records End -->
+    <!-- Insurance Policy Start -->    
+        <li class="nav-item">
+          <a class="nav-link" href="patient-insurance.php">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>View Insurance Policy</span></a>
+        </li>
+    <!-- Insurance Policy End -->
     <!-- Test PHP/mySQL connection -->    
         <li class="nav-item">
           <a class="nav-link" href="testPHP.php">
@@ -90,20 +97,24 @@
         </li>
      <!-- Log Out End --> 
       </ul>
-      
 <!------------------------------------Sidebar End---------------------------------------->
 <!--------------------------------- Container Start ------------------------------------->
+
       <div id="content-wrapper">
-		<div class="container-fluid">
+        <div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> Patient Summary</div>
+            <div class="card-header"><i class="fas fa-table"></i> Schedule an Appointment</div>
             <div class="card-body">
-                       
-<!-- Add hyperlink to fields, send to doctor-update.php with Patient_ID to view medical Records -->
-<!-- Patient Medical Records: Allergy, Condition, Immunization, Surgery, Treatment, Medicine, Obsevation Tables -->
-				
+              <div class="table-responsive">
+                
+                
+                
+
+				<!-- Add .JS alert to remind patient of appointment -->
+			<!-- Add .JS Calendar or HTML Form to select an appointment date -->
+
 <!------------------------------------ PHP Begin---------------------------------------->
- 
+
                 
 <?php
  
@@ -115,61 +126,26 @@ $dbname = "HealthcareDB";
 // Create connection
  
 $conn = new mysqli("localhost", "root", "", "HealthcareDB");
-$sql = 'SELECT * from Patient';
-//$sql = "SELECT Patient_ID, First_Name, Last_Name FROM Patient";
-if (mysqli_query($conn, $sql)) {
+$sql = 'SELECT * from Appointment';
+if (mysqli_query($conn, $sql)) 
+{
  		echo "";
 } 
-else {
+else 
+{
  
 		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
- 
-$count=1;
-$result = mysqli_query($conn, $sql);
- 
-if (mysqli_num_rows($result) > 0) {
-// output data of each row 
-$x=0;
-echo "<div class=\"row\">";
-while($row = mysqli_fetch_assoc($result)) {
-  if($x!=0 && $x%3==0){  // if not first iteration and iteration divided by 3 has no remainder...
-      echo "</div>\n<div class='row'>";
-  }
-  echo "<div class='card col-sm' style='width: 18rem;'>
-  <div class='card-body'>
-    <h5 class='card-title'>";
-      echo $row['First_Name']; echo $row['Last_Name'];
-    echo "</h5>
-    <h6 class='card-subtitle mb-2 text-muted'>
-      SSN: ";echo $row['SSN'];
-    echo "</h6>
-    <p class='card-text'>
-      Date of birth: "; echo $row['Birth_Date'];
-    echo "</p>
-    <a href='doctor-med.php' class='card-link'>"; echo $row['Patient_ID'];
-    echo "
-    </a>
-  </div>
-</div>";
-  ++$x;
-}
-echo "</div>";
-while($row = mysqli_fetch_assoc($result)) { ?>
-
-<?php
-$count++;
-}
-} else {
-echo '0 results';
-}?>  
+ ?>  
 
 <!------------------------------------ PHP End---------------------------------------->
-          
+
+                           
               </div>
             </div>
             <div class="card-footer small text-muted"></div>
           </div>
+
         </div>
         <!-- /.container-fluid -->
 
@@ -192,18 +168,19 @@ echo '0 results';
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fas fa-angle-up"></i>
     </a>
+    
 <!---------------------------------- Container End -------------------------------------->   
    
     <!-- Bootstrap JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
-    <script src="js/sb-admin.min.js"></script>
-    <script src="js/demo/datatables-demo.js"></script>
-    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../vendor/chart.js/Chart.min.js"></script>
+    <script src="../../vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../../vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="../../js/sb-admin.min.js"></script>
+    <script src="../../js/demo/datatables-demo.js"></script>
+    <script src="../../js/demo/chart-area-demo.js"></script>
 
   </body>
 

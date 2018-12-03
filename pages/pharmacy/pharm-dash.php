@@ -9,13 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Insurance Dashboard</title>
+    <title>Pharmacist Dashboard</title>
 
     <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../../css/sb-admin.css" rel="stylesheet">
 
   </head>
 
@@ -41,19 +41,26 @@
 	<!-- Dashboard Start -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="insurance-dash.php">
+          <a class="nav-link" href="pharm-dash.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span> View Policyholders</span>
+            <span> View Upcoming Prescriptions</span>
           </a>
         </li>
     <!-- Dashboard End -->
     <!-- View Med Info Start -->    
         <li class="nav-item">
-          <a class="nav-link" href="insurance-med.php">
+          <a class="nav-link" href="pharm-med.php">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Patient Summary</span></a>
+            <span>Patient Medical Records</span></a>
         </li>
     <!-- View Med Info End -->
+    <!-- Prescription Records Start -->    
+        <li class="nav-item">
+          <a class="nav-link" href="pharm-rx.php">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Prescription Records</span></a>
+        </li>
+    <!-- Prescription Records End -->
     <!-- Test PHP/mySQL connection -->    
         <li class="nav-item">
           <a class="nav-link" href="testPHP.php">
@@ -82,30 +89,36 @@
       <div id="content-wrapper">
 		<div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> Policyholder</div>
+            <div class="card-header"><i class="fas fa-table"></i> Pending Prescriptions</div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered"  width="100%" cellspacing="0">
 		<thead>
  			<tr>
+ 				<th>Prescription ID</th>
  				<th>Patient ID</th>
- 				<th>First Name</th>
-  				<th>Last Name</th>
- 				<th>Plan ID</th>
-				<th>Description</th>
+ 				<th>Doctor ID</th>
+  				<th>Medication ID</th>
+ 				<th>Condition ID</th>
+				<th>Pharmacy</th>
+ 				<th>Start Date</th>
+ 				<th>End Date</th>
  			</tr>
  		</thead>
  		<tfoot>
  			<tr>
+ 				<th>Prescription ID</th>
  				<th>Patient ID</th>
- 				<th>First Name</th>
-  				<th>Last Name</th>
- 				<th>Plan ID</th>
-				<th>Description</th>
+ 				<th>Doctor ID</th>
+  				<th>Medication ID</th>
+ 				<th>Condition ID</th>
+				<th>Pharmacy</th>
+ 				<th>Start Date</th>
+ 				<th>End Date</th>
  			</tr>
 		</tfoot>
 
-			<!-- Concatenate Insurance_Plan and Patient_Insurance Tables -->
+			<!-- Add table to view current scripts from Prescriptions table -->
 						
 <!------------------------------------ PHP Begin---------------------------------------->
 
@@ -120,7 +133,7 @@ $dbname = "HealthcareDB";
 // Create connection
  
 $conn = new mysqli("localhost", "root", "", "HealthcareDB");
-$sql = 'SELECT * from Insurance_Plan, Patient_Insurance';
+$sql = 'SELECT * from Prescription';
 
 if (mysqli_query($conn, $sql)) {
  		echo "";
@@ -140,21 +153,31 @@ while($row = mysqli_fetch_assoc($result)) { ?>
  <tbody>
 					<tr>
 					<th> 
-					<?php echo $row['Patient_ID']; ?>
+					<?php echo $row['Prescription_ID']; ?>
 					</th>
 					<td>
-					<?php echo $row['First_Name']; ?>
+					<?php echo $row['Patient_ID']; ?>
 					</td>
 					<td>
-					<?php echo $row['Last_Name']; ?>
+					<?php echo $row['Doctor_ID']; ?>
 					</td>
 					<td>
-					<?php echo $row['Plan_ID']; ?>
+					<?php echo $row['Medication']; ?>
 					</td>
 					<td>
-					<?php echo $row['Description']; ?>
+					<?php echo $row['Condition_ID']; ?>
+					</td>
+					<td>
+					<?php echo $row['Pharmacy_ID']; ?>
+					</td>
+					<td>
+					<?php echo $row['Start_Date']; ?>
+					</td>
+					<td>
+					<?php echo $row['End_Date']; ?>
 					</td>
 					</tr>
+
 
 </tbody>         
 <?php
@@ -198,12 +221,12 @@ echo '0 results';
 <!---------------------------------- Container End -------------------------------------->   
    
     <!-- Bootstrap JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
-    <script src="js/sb-admin.min.js"></script>
-    <script src="js/demo/datatables-demo.js"></script>
-    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../vendor/chart.js/Chart.min.js"></script>
+    <script src="../../vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../../vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="../../js/sb-admin.min.js"></script>
+    <script src="../../js/demo/datatables-demo.js"></script>
+    <script src="../../js/demo/chart-area-demo.js"></script>

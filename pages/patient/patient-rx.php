@@ -9,19 +9,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Patient Medical Records</title>
+    <title>Patient - View/Refill Prescriptions</title>
 
     <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../../css/sb-admin.css" rel="stylesheet">
 
   </head>
 
   <body id="page-top">
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
       <a class="navbar-brand mr-1" href="patient-dash.php">EMR Portal</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
@@ -33,6 +34,7 @@
       <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown no-arrow mx-1">
     </nav>
+
     <div id="wrapper">
 
 <!------------------------------------Sidebar Start------------------------------------->
@@ -41,7 +43,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="patient-dash.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span> Patient Info</span>
+            <span>Patient Info</span>
           </a>
         </li>
     <!-- Dashboard End -->
@@ -97,30 +99,34 @@
       </ul>
 <!------------------------------------Sidebar End---------------------------------------->
 <!--------------------------------- Container Start ------------------------------------->
+
       <div id="content-wrapper">
         <div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> Medical Records</div>
+            <div class="card-header"><i class="fas fa-table"></i> View/Refill Prescriptions</div>
             <div class="card-body">
               <div class="table-responsive">
-	<table class="table table-bordered"  width="100%" cellspacing="0">
-        <thead>
+                <table class="table table-bordered"  width="100%" cellspacing="0">
+		<thead>
  			<tr>
- 				<th>Height</th>
-  				<th>Weight</th>
- 				<th>Body Mass Index</th>
-				<th>Systolic Blood Pressure </th>
- 				<th>Diastolic Blood Pressure</th>
- 
-			</tr>
+ 				<th>Prescription ID</th>
+ 				<th>Doctor ID</th>
+  				<th>Medication ID</th>
+ 				<th>Condition ID</th>
+				<th>Pharmacy</th>
+ 				<th>Start Date</th>
+ 				<th>End Date</th>
+ 			</tr>
  		</thead>
 
+			<!-- Add table to view current scripts from Prescriptions table -->
+						<!-- Add .JS button to request a refill -->
+						 <!-- Add .JS alert to confirm refill -->
+					 
+					 
 <!------------------------------------ PHP Begin---------------------------------------->
 
-			<!--- Pass User_Account pointing to specific Patient_ID hash--->
-	<!--- Add PHP loop that returns Data_Value and Data_Type from row[n] row[n+4] ---> 
-<!--- repeat steps for Tables: Allergy, Condition, Immunization, Surgery, Treatment, Medications--->          
-
+                
 <?php
  
 $servername = "localhost";
@@ -131,7 +137,8 @@ $dbname = "HealthcareDB";
 // Create connection
  
 $conn = new mysqli("localhost", "root", "", "HealthcareDB");
-$sql = 'SELECT * FROM Medical_Data';
+$sql = 'SELECT * from Prescription';
+
 if (mysqli_query($conn, $sql)) {
  		echo "";
 } 
@@ -140,22 +147,50 @@ else {
 		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
  
+$count=1;
 $result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result); 
-
-
-{?>
-    			<tr>
+ 
+if (mysqli_num_rows($result) > 0) {
+// output data of each row 
+while($row = mysqli_fetch_assoc($result)) { ?>
+ 
+ <tbody>
+					<tr>
+					<th> 
+					<?php echo $row['Prescription_ID']; ?>
+					</th>
 					<td>
-					<?php echo $row['Data_Value'];?> 
-					</td>		
-				</tr>
-</tbody>
+					<?php echo $row['Doctor_ID']; ?>
+					</td>
+					<td>
+					<?php echo $row['Medication_ID']; ?>
+					</td>
+					<td>
+					<?php echo $row['Condition_ID']; ?>
+					</td>
+					<td>
+					<?php echo $row['Pharmacy_ID']; ?>
+					</td>
+					<td>
+					<?php echo $row['Start_Date']; ?>
+					</td>
+					<td>
+					<?php echo $row['End_Date']; ?>
+					</td>
+					</tr>
+
+
+</tbody>         
 <?php
+$count++;
+}
+} else {
+echo '0 results';
 }?>  
 
-<!------------------------------------ PHP End ---------------------------------------->
-                </table>           
+<!------------------------------------ PHP End---------------------------------------->
+				</table>
+                           
               </div>
             </div>
             <div class="card-footer small text-muted"></div>
@@ -185,17 +220,17 @@ $row = mysqli_fetch_assoc($result);
     </a>
     
 <!---------------------------------- Container End -------------------------------------->   
-    
+   
     <!-- Bootstrap JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
-    <script src="js/sb-admin.min.js"></script>
-    <script src="js/demo/datatables-demo.js"></script>
-    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../vendor/chart.js/Chart.min.js"></script>
+    <script src="../../vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../../vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="../../js/sb-admin.min.js"></script>
+    <script src="../../js/demo/datatables-demo.js"></script>
+    <script src="../../js/demo/chart-area-demo.js"></script>
 
   </body>
 
