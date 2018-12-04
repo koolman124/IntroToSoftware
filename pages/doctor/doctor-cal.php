@@ -110,7 +110,7 @@ $dbname = "HealthcareDB";
 // Create connection
  
 $conn = new mysqli("localhost", "root", "", "HealthcareDB");
-$sql = 'SELECT * from Appointment';
+$sql = 'SELECT * FROM Appointment WHERE Doctor_ID = "2949907"';
 if (mysqli_query($conn, $sql)) {
  		echo "";
 } 
@@ -118,7 +118,42 @@ else {
  
 		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
-?> 
+$count=1;
+$result = mysqli_query($conn, $sql);
+ 
+if (mysqli_num_rows($result) > 0) {
+// output data of each row 
+$x=0;
+echo "<div class=\"row\">";
+while($row = mysqli_fetch_assoc($result)) {
+  if($x!=0 && $x%3==0){  // if not first iteration and iteration divided by 3 has no remainder...
+      echo "</div>\n<div class='row'>";
+  }
+  echo "<div class='card col-sm' style='width: 18rem;'>
+  <div class='card-body'>
+    <h5 class='card-title'>";
+      echo $row['Appointment_ID'];
+    echo "</h5>
+    <h6 class='card-subtitle mb-2 text-muted'>
+      Date: ";echo $row['Date'];
+    echo "</h6>
+    <p class='card-text'>"; 
+     echo $row['Appt_Type'];
+     echo "</p> <a href=\"doctor-medinfo.php?patient=" . urlencode($row['Patient_ID']) . "\">" . $row['Patient_ID'] . "</a>";
+     echo "
+  </div>
+</div>";
+  ++$x;
+}
+echo "</div>";
+while($row = mysqli_fetch_assoc($result)) { ?>
+
+<?php
+$count++;
+}
+} else {
+echo '0 results';
+}?>  
 
 
 <!------------------------------------ PHP End---------------------------------------->
