@@ -63,10 +63,10 @@
 <!------------------------------------Sidebar Start------------------------------------->
 	<!-- Dashboard Start -->
       <ul class="sidebar navbar-nav">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="patient-dash.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span> Patient Info</span>
+            <span> My Info</span>
           </a>
         </li>
     <!-- Dashboard End -->
@@ -78,7 +78,7 @@
         </li>
     <!-- Appointment End -->
      <!-- View Med Info Start -->    
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="patient-med.php">
             <i class="fas fa-fw fa-folder"></i>
             <span>View Medical Info</span></a>
