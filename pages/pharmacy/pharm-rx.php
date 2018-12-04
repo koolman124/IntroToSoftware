@@ -59,13 +59,6 @@
           </a>
         </li>
     <!-- Dashboard End -->
-    <!-- View Med Info Start -->    
-        <li class="nav-item">
-          <a class="nav-link" href="pharm-med.php">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Patient Medical Records</span></a>
-        </li>
-    <!-- View Med Info End -->
     <!-- Prescription Records Start -->    
         <li class="nav-item">
           <a class="nav-link" href="pharm-rx.php">
@@ -103,18 +96,6 @@
  				<th>End Date</th>
  			</tr>
  		</thead>
- 		<tfoot>
- 			<tr>
- 				<th>Prescription ID</th>
- 				<th>Patient ID</th>
- 				<th>Doctor ID</th>
-  				<th>Medication ID</th>
- 				<th>Condition ID</th>
-				<th>Pharmacy</th>
- 				<th>Start Date</th>
- 				<th>End Date</th>
- 			</tr>
-		</tfoot>
 
 			<!-- Add table to view current scripts from Prescriptions table -->
 						<!-- Add .JS button to request a refill -->
@@ -132,7 +113,7 @@ $dbname = "HealthcareDB";
  
 // Create connection
  
-$conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
+$conn = new mysqli("localhost", "root", "", "HealthcareDB");
 $sql = 'SELECT * from Prescription';
 
 if (mysqli_query($conn, $sql)) {

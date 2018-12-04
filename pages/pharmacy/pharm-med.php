@@ -60,13 +60,6 @@
           </a>
         </li>
     <!-- Dashboard End -->
-    <!-- View Med Info Start -->    
-        <li class="nav-item">
-          <a class="nav-link" href="pharm-med.php">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Patient Medical Records</span></a>
-        </li>
-    <!-- View Med Info End -->
     <!-- Prescription Records Start -->    
         <li class="nav-item">
           <a class="nav-link" href="pharm-rx.php">
@@ -104,6 +97,8 @@
                 
 <?php
  
+$patientid = $_GET['patient'];
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -112,7 +107,7 @@ $dbname = "HealthcareDB";
 // Create connection
  
 $conn = new mysqli("localhost", "root", "", "HealthcareDB");
-$sql = 'SELECT * FROM Patient WHERE Patient_ID = "024e-4fe4-9032"';
+$sql = "SELECT * FROM Patient WHERE Patient_ID = '$patientid'";
 if (mysqli_query($conn, $sql)) {
  		echo "";
 } 

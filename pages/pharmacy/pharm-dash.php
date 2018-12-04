@@ -60,13 +60,6 @@
           </a>
         </li>
     <!-- Dashboard End -->
-    <!-- View Med Info Start -->    
-        <li class="nav-item">
-          <a class="nav-link" href="pharm-med.php">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Patient Medical Records</span></a>
-        </li>
-    <!-- View Med Info End -->
     <!-- Prescription Records Start -->    
         <li class="nav-item">
           <a class="nav-link" href="pharm-rx.php">
@@ -74,27 +67,12 @@
             <span>Prescription Records</span></a>
         </li>
     <!-- Prescription Records End -->
-    <!-- Test PHP/mySQL connection -->    
-        <li class="nav-item">
-          <a class="nav-link" href="testPHP.php">
+    <li class="nav-item">
+          <a class="nav-link" href="../../index.php?logout='1'">
             <i class="fas fa-fw fa-folder"></i>
-            <span>TEST PHP</span></a>
+            <span>Logout</span></a>
         </li>
-    <!-- Test PHP/mySQL connection --> 
-    <!-- Log Out Start -->    
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Account/Logout</span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Login Screens:</h6>
-            <a class="dropdown-item" href="index.html">Log Out</a>
-            <a class="dropdown-item" href="register.html">Register</a>
-            <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-          </div>
-        </li>
-     <!-- Log Out End --> 
+     <!-- Log Out End -->  
       </ul>
 <!------------------------------------Sidebar End---------------------------------------->
 <!--------------------------------- Container Start ------------------------------------->
@@ -157,7 +135,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 					<?php echo $row['Prescription_ID']; ?>
 					</th>
 					<td>
-					<?php echo $row['Patient_ID']; ?>
+					<?php echo "</p> <a href=\"pharm-med.php?patient=" . urlencode($row['Patient_ID']) . "\">" . $row['Patient_ID'] . "</a>"; ?>
 					</td>
 					<td>
 					<?php echo $row['Doctor_ID']; ?>
