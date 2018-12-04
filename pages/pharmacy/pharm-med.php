@@ -1,3 +1,16 @@
+<?php 
+  session_start(); 
+
+  if (!isset($_SESSION['username'])) {
+  	$_SESSION['msg'] = "You must log in first";
+  	header('location: ../../login.php');
+  }
+  if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['username']);
+  	header("location: ../../login.php");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,10 +25,10 @@
     <title>Pharmacist Update Medical Info</title>
 
     <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../../css/sb-admin.css" rel="stylesheet">
 
   </head>
 
@@ -62,24 +75,10 @@
         </li>
     <!-- Prescription Records End -->
     <!-- Test PHP/mySQL connection -->    
-        <li class="nav-item">
-          <a class="nav-link" href="testPHP.php">
+    <li class="nav-item">
+          <a class="nav-link" href="../../index.php?logout='1'">
             <i class="fas fa-fw fa-folder"></i>
-            <span>TEST PHP</span></a>
-        </li>
-    <!-- Test PHP/mySQL connection --> 
-    <!-- Log Out Start -->    
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Account/Logout</span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Login Screens:</h6>
-            <a class="dropdown-item" href="index.html">Log Out</a>
-            <a class="dropdown-item" href="register.html">Register</a>
-            <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-          </div>
+            <span>Logout</span></a>
         </li>
      <!-- Log Out End --> 
       </ul>
