@@ -148,7 +148,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 					<?php echo $row['Patient_ID']; ?>
 					</td>
 					<td>
-					<?php echo $row['Medication_ID']; ?>
+          <?php echo "<a href=\"doctor-medications.php?med=" . urlencode($row['Medication_ID']) . "\">" . $row['Medication_ID'] . "</a>"; ?>
 					</td>
 					<td>
 					<?php echo $row['Condition_ID']; ?>

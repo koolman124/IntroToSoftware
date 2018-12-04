@@ -1,6 +1,7 @@
 <?php  
-    session_start(); 
+    /* Start the session if the session is active via the user logging in */
 
+    session_start(); 
 ?>
 
 <!DOCTYPE html>
@@ -94,7 +95,7 @@
       <div id="content-wrapper">
 		<div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> Patient Summary</div>
+            <div class="card-header"><i class="fas fa-table"></i> Medication Summary</div>
             <div class="card-body">
                        
 <!-- Add hyperlink to fields, send to doctor-update.php with Patient_ID to view medical Records -->
@@ -105,6 +106,8 @@
                 
 <?php
  
+$medid = $_GET['med'];
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -113,8 +116,7 @@ $dbname = "HealthcareDB";
 // Create connection
  
 $conn = new mysqli("localhost", "root", "", "HealthcareDB");
-$sql = 'SELECT * from Patient';
-//$sql = "SELECT Patient_ID, First_Name, Last_Name FROM Patient";
+$sql = "SELECT * from medication where Medication_ID = '$medid'";
 if (mysqli_query($conn, $sql)) {
  		echo "";
 } 
@@ -137,15 +139,11 @@ while($row = mysqli_fetch_assoc($result)) {
   echo "<div class='card col-sm' style='width: 18rem;'>
   <div class='card-body'>
     <h5 class='card-title'>";
-      echo $row['First_Name'];?> <?php echo $row['Last_Name'];
-    echo "</h5>
+      echo $row['Medication_ID'];?> 
+      <?php echo "</h5>
     <h6 class='card-subtitle mb-2 text-muted'>
-      SSN: ";echo $row['SSN'];
+      Name: ";echo $row['Name'];
     echo "</h6>
-    <p class='card-text'>
-      Date of birth: "; echo $row['Birth_Date'];
-    echo "</p> <a href=\"doctor-medinfo.php?patient=" . urlencode($row['Patient_ID']) . "\">" . $row['Patient_ID'] . "</a>";
-    echo "
   </div>
 </div>";
   ++$x;
