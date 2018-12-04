@@ -12,10 +12,10 @@
     <title>Pharmacist Dashboard</title>
 
     <!-- Bootstrap CSS-->
-    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="../../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="../../css/sb-admin.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="css/sb-admin.css" rel="stylesheet">
 
   </head>
 
@@ -105,6 +105,18 @@
  				<th>End Date</th>
  			</tr>
  		</thead>
+ 		<tfoot>
+ 			<tr>
+ 				<th>Prescription ID</th>
+ 				<th>Patient ID</th>
+ 				<th>Doctor ID</th>
+  				<th>Medication ID</th>
+ 				<th>Condition ID</th>
+				<th>Pharmacy</th>
+ 				<th>Start Date</th>
+ 				<th>End Date</th>
+ 			</tr>
+		</tfoot>
 
 			<!-- Add table to view current scripts from Prescriptions table -->
 						
@@ -115,12 +127,12 @@
  
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "troublein421";
 $dbname = "HealthcareDB";
  
 // Create connection
  
-$conn = new mysqli("localhost", "root", "", "HealthcareDB");
+$conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
 $sql = 'SELECT * from Prescription';
 
 if (mysqli_query($conn, $sql)) {
@@ -150,7 +162,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 					<?php echo $row['Doctor_ID']; ?>
 					</td>
 					<td>
-					<?php echo $row['Medication_ID']; ?>
+					<?php echo $row['Medication']; ?>
 					</td>
 					<td>
 					<?php echo $row['Condition_ID']; ?>
@@ -209,12 +221,12 @@ echo '0 results';
 <!---------------------------------- Container End -------------------------------------->   
    
     <!-- Bootstrap JavaScript-->
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="../../vendor/chart.js/Chart.min.js"></script>
-    <script src="../../vendor/datatables/jquery.dataTables.js"></script>
-    <script src="../../vendor/datatables/dataTables.bootstrap4.js"></script>
-    <script src="../../js/sb-admin.min.js"></script>
-    <script src="../../js/demo/datatables-demo.js"></script>
-    <script src="../../js/demo/chart-area-demo.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="js/sb-admin.min.js"></script>
+    <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/demo/chart-area-demo.js"></script>

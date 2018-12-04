@@ -12,10 +12,10 @@
     <title>Pharmacist Update Medical Info</title>
 
     <!-- Bootstrap CSS-->
-    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="../../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="../../css/sb-admin.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="css/sb-admin.css" rel="stylesheet">
 
   </head>
 
@@ -107,13 +107,13 @@
  
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "troublein421";
 $dbname = "HealthcareDB";
  
 // Create connection
  
-$conn = new mysqli("localhost", "root", "", "HealthcareDB");
-$sql = 'SELECT * FROM Patient WHERE Patient_ID = "0129-4224-9579"';
+$conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
+$sql = 'SELECT * FROM Patient WHERE Patient_ID = "00269bb7-e3ab-43a9-9cdf-cdf9b6e3b2b3"';
 if (mysqli_query($conn, $sql)) {
  		echo "";
 } 
@@ -126,64 +126,50 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result); 
 { ?>
  
-   <tbody>
+    		<tbody>
                 <tr>
                       <th>Patient ID</th>
-                      <td> <?php echo $row['Patient_ID']; ?> </td>
-                </tr>
-                <tr>  
+                      <td> <?php echo $row['Patient_ID']; ?> </td>  
                       <th>User ID:</th>
                       <td></td>    
                 </tr>
                 <tr>
                       <th>First Name</th>
                       <td> <?php echo $row['First_Name']; ?> </td>
-                </tr>
-                <tr>
                       <th>Last Name</th>
                       <td> <?php echo $row['Last_Name']; ?> </td>
                 </tr>
                 <tr>
                       <th>Birth Date</th>
                       <td> <?php echo $row['Birth_Date']; ?> </td>
-                </tr>
-                <tr>
                       <th>Social Security Number</th>
                       <td> <?php echo $row['SSN']; ?> </td>
                 </tr>
                 <tr>
                       <th>Address</th>
                       <td> <?php echo $row['Address']; ?> </td>
-                </tr>
-                <tr>
                       <th>City</th>
                       <td> <?php echo $row['City']; ?> </td>
                 </tr>
                 <tr>
                       <th>State</th>
                       <td> <?php echo $row['State']; ?> </td>
-                </tr>
-                <tr>
                       <th>Zip Code</th>
                       <td> <?php echo $row['Zip_Code']; ?> </td>
                 </tr>
                 <tr>
                       <th>Race</th>
                       <td> <?php echo $row['Race']; ?> </td>
-                </tr>
-                <tr>
                       <th>Sex</th>
                       <td> <?php echo $row['Sex']; ?> </td>
                 </tr>
                 <tr>
                       <th>Phone</th>
                       <td> <?php echo $row['Phone']; ?> </td>
-                </tr>
-                <tr>
                       <th>Email</th>
                       <td> <?php echo $row['Email']; ?> </td>
                 </tr>
-  </tbody>
+            </tbody>
 <?php
 }?>  
 
@@ -220,12 +206,12 @@ $row = mysqli_fetch_assoc($result);
 <!---------------------------------- Container End -------------------------------------->   
    
     <!-- Bootstrap JavaScript-->
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="../../vendor/chart.js/Chart.min.js"></script>
-    <script src="../../vendor/datatables/jquery.dataTables.js"></script>
-    <script src="../../vendor/datatables/dataTables.bootstrap4.js"></script>
-    <script src="../../js/sb-admin.min.js"></script>
-    <script src="../../js/demo/datatables-demo.js"></script>
-    <script src="../../js/demo/chart-area-demo.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="js/sb-admin.min.js"></script>
+    <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/demo/chart-area-demo.js"></script>
