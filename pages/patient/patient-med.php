@@ -108,23 +108,13 @@
       </ul>
 <!------------------------------------Sidebar End---------------------------------------->
 <!--------------------------------- Container Start ------------------------------------->
-      <div id="content-wrapper">
+<div id="content-wrapper">
         <div class="container-fluid">
           <div class="card mb-3">
             <div class="card-header"><i class="fas fa-table"></i> Medical Records</div>
             <div class="card-body">
               <div class="table-responsive">
-	<table class="table table-bordered"  width="100%" cellspacing="0">
-        <thead>
- 			<tr>
- 				<th>Height</th>
-  				<th>Weight</th>
- 				<th>Body Mass Index</th>
-				<th>Systolic Blood Pressure </th>
- 				<th>Diastolic Blood Pressure</th>
- 
-			</tr>
- 		</thead>
+				<table class="table table-bordered"  width="100%" cellspacing="0">
 
 <!------------------------------------ PHP Begin---------------------------------------->
 
@@ -133,37 +123,207 @@
 <!--- repeat steps for Tables: Allergy, Condition, Immunization, Surgery, Treatment, Medications--->          
 
 <?php
- 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "HealthcareDB";
- 
-// Create connection
- 
-$conn = new mysqli("localhost", "root", "", "HealthcareDB");
-$sql = 'SELECT * FROM Medical_Data';
-if (mysqli_query($conn, $sql)) {
- 		echo "";
-} 
-else {
- 
-		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
- 
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result); 
 
+$conn = mysqli_connect("localhost","root","","HealthcareDB");
+$sql = "CALL ViewMedicalInfo ('2a16-4698-811f', 'allergy');";
 
-{?>
-    			<tr>
-					<td>
-					<?php echo $row['Data_Value'];?> 
-					</td>		
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			<tbody>
+                <tr>
+                    <th>Allergy Name</th>
+					<td> <?php echo $row['description']; ?></td>
 				</tr>
-</tbody>
+				<tr>
+                    <th>Start Date</th>
+					<td> <?php echo $row['start_date']; ?></td>
+				</tr>
+				<tr>
+                    <th>End Date</th>
+					<td> <?php echo $row['end_date']; ?></td>
+				</tr>
+				<tr><td></td></tr>
+			</tbody>	 
+	
+	<?php } ?>
+	<?php	}
+ ?>
+
+
 <?php
-}?>  
+
+$conn = mysqli_connect("localhost","root","","HealthcareDB");
+$sql = "CALL ViewMedicalInfo ('0095-4213-9755', 'med_condition');";
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			<tbody>
+                <tr>
+                    <th>Medical Condition</th>
+					<td> <?php echo $row['description']; ?></td>
+				</tr>
+				<tr>
+                    <th>Start Date</th>
+					<td> <?php echo $row['start_date']; ?></td>
+				</tr>
+				<tr>
+                    <th>End Date</th>
+					<td> <?php echo $row['end_date']; ?></td>
+				</tr>
+				<tr><td></td></tr>
+			</tbody>	 
+	
+	<?php } ?>
+
+	<?php	}
+ ?>
+    
+ <?php
+
+$conn = mysqli_connect("localhost","root","","HealthcareDB");
+$sql = "CALL ViewMedicalInfo ('a1da-41c3-b2a0', 'immunization');";
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			<tbody>
+                <tr>
+                    <th>Immunization Description</th>
+					<td> <?php echo $row['description']; ?></td>
+				</tr>
+				<tr>
+                    <th>Date</th>
+					<td> <?php echo $row['date']; ?></td>
+				</tr>
+				<tr><td></td></tr>
+			</tbody>	 
+	
+	<?php } ?>
+
+	<?php	}
+ ?>
+
+<?php
+
+$conn = mysqli_connect("localhost","root","","HealthcareDB");
+$sql = "CALL ViewMedicalInfo ('0095-4213-9755', 'surgery');";
+
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			<tbody>
+                <tr>
+                    <th>Surgery</th>
+					<td> <?php echo $row['surgery']; ?></td>
+				</tr>
+				<tr>
+                    <th>Reason</th>
+					<td> <?php echo $row['reason']; ?></td>
+				</tr>
+				<tr>
+                    <th>Date</th>
+					<td> <?php echo $row['date']; ?></td>
+				</tr>
+				<tr><td></td></tr>
+			</tbody>	 
+	
+	<?php } ?>
+
+	<?php	}
+ ?>
+ 
+ <?php
+
+$conn = mysqli_connect("localhost","root","","HealthcareDB");
+$sql = "CALL ViewMedicalInfo ('0095-4213-9755', 'treatment');";
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			<tbody>
+                <tr>
+                    <th>Treatment</th>
+					<td> <?php echo $row['description']; ?></td>
+				</tr>
+				<tr>
+                    <th>Start Date</th>
+					<td> <?php echo $row['start_date']; ?></td>
+				</tr>
+				<tr>
+                    <th>End Date</th>
+					<td> <?php echo $row['end_date']; ?></td>
+				</tr>
+				<tr>
+                    <th>Reason</th>
+					<td> <?php echo $row['reason']; ?></td>
+				</tr>
+				<tr><td></td></tr>
+			</tbody>	 
+	
+	<?php } ?>
+
+	<?php	}
+ ?> 
+
+<?php
+
+$conn = mysqli_connect("localhost","root","","HealthcareDB");
+$sql = "CALL ViewMedicalInfo ('0095-4213-9755', 'medication');";
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			<tbody>
+                <tr>
+                    <th>Medication Name</th>
+					<td> <?php echo $row['medication']; ?></td>
+				</tr>
+				<tr>
+                    <th>Reason</th>
+					<td> <?php echo $row['reason']; ?></td>
+				</tr>
+				<tr>
+                    <th>Start Date</th>
+					<td> <?php echo $row['start_date']; ?></td>
+				</tr>
+				<tr>
+                    <th>End Date</th>
+					<td> <?php echo $row['end_date']; ?></td>
+				</tr>
+				<tr><td></td></tr>
+			</tbody>	 
+	
+	<?php } ?>
+
+	<?php	}
+ ?>
+
+ <?php
+
+$conn = mysqli_connect("localhost","root","","HealthcareDB");
+$sql = "CALL ViewMedicalInfo ('a1da-41c3-b2a0', 'medical_data');";
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			<tbody>
+                <tr>
+                    <th> <?php echo $row['type']; ?></th>
+					<td> <?php echo $row['data']; ?></td>
+				</tr>
+				<tr>
+                    <th>Date</th>
+					<td> <?php echo $row['date']; ?></td>
+				</tr>
+			</tbody>	 
+	
+	<?php } ?>
+
+	<?php	}
+ ?>
 
 <!------------------------------------ PHP End ---------------------------------------->
                 </table>           

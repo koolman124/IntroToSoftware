@@ -117,7 +117,8 @@
             <div class="card-header"><i class="fas fa-table"></i> View Insurance Policy</div>
             <div class="card-body">
               <div class="table-responsive">
-                
+               	<table table border="0" width="50%" cellspacing="0">
+ 
                 
                 
 
@@ -128,66 +129,40 @@
 
                 
 <?php
- 
- $servername = "localhost";
- $username = "root";
- $password = "";
- $dbname = "HealthcareDB";
-  
- // Create connection
-  
- $conn = new mysqli("localhost", "root", "", "HealthcareDB");
- $sql = 'SELECT * from Insurance_plan';
- //$sql = "SELECT Patient_ID, First_Name, Last_Name FROM Patient";
- if (mysqli_query($conn, $sql)) {
-      echo "";
- } 
- else {
-  
-     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
- }
-  
- $count=1;
- $result = mysqli_query($conn, $sql);
-  
- if (mysqli_num_rows($result) > 0) {
- // output data of each row 
- $x=0;
- echo "<div class=\"row\">";
- while($row = mysqli_fetch_assoc($result)) {
-   if($x!=0 && $x%3==0){  // if not first iteration and iteration divided by 3 has no remainder...
-       echo "</div>\n<div class='row'>";
-   }
-   echo "<div class='card col-sm' style='width: 18rem;'>
-   <div class='card-body'>
-     <h5 class='card-title'>";
-       echo $row['Name'];
-     echo "</h5>
-     <h6 class='card-subtitle mb-2 text-muted'>
-       Provider ID: ";echo $row['Provider_ID'];
-     echo "</h6>
-     <p class='card-text'>"; 
-      echo $row['Description'];
-     echo "</p>
-     </a>
-   </div>
- </div>";
-   ++$x;
- }
- echo "</div>";
- while($row = mysqli_fetch_assoc($result)) { ?>
- 
- <?php
- $count++;
- }
- } else {
- echo '0 results';
- }?>  
- 
+
+$conn = mysqli_connect("localhost","root","","HealthcareDB");
+$sql = "CALL ViewInsuranceInfo ('abc5-48dc-b830', 1 );";
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			<tbody>
+                <tr>
+                    <th>Plan</th>
+					<td> <?php echo $row['plan_name']; ?></td>
+				</tr>
+				<tr>
+                    <th>Description</th>
+					<td> <?php echo $row['description']; ?></td>
+				</tr>
+				<tr>
+                    <th>Provider</th>
+					<td> <?php echo $row['provider_name']; ?></td>
+				</tr>
+				<tr>
+                    <th>Phone Number</th>
+					<td> <?php echo $row['phone']; ?></td>
+				</tr>
+			</tbody>	 
+	
+	<?php } ?>
+	<?php	}
+ ?>
+
 
 
 <!------------------------------------ PHP End---------------------------------------->						
-                           
+ </table>                          
               </div>
             </div>
             <div class="card-footer small text-muted"></div>

@@ -109,26 +109,14 @@
      <!-- Log Out End --> 
       </ul>
 <!------------------------------------Sidebar End---------------------------------------->
-<!--------------------------------- Container Start ------------------------------------->
-
-      <div id="content-wrapper">
+<div id="content-wrapper">
         <div class="container-fluid">
           <div class="card mb-3">
             <div class="card-header"><i class="fas fa-table"></i> View/Refill Prescriptions</div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered"  width="100%" cellspacing="0">
-		<thead>
- 			<tr>
- 				<th>Prescription ID</th>
- 				<th>Doctor ID</th>
-  				<th>Medication ID</th>
- 				<th>Condition ID</th>
-				<th>Pharmacy</th>
- 				<th>Start Date</th>
- 				<th>End Date</th>
- 			</tr>
- 		</thead>
+		
 
 			<!-- Add table to view current scripts from Prescriptions table -->
 						<!-- Add .JS button to request a refill -->
@@ -137,67 +125,52 @@
 					 
 <!------------------------------------ PHP Begin---------------------------------------->
 
-                
+
+<h1>Upcoming Prescriptions</h1>
+
 <?php
- 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "HealthcareDB";
- 
-// Create connection
- 
-$conn = new mysqli("localhost", "root", "", "HealthcareDB");
-$sql = 'SELECT * from Prescription';
 
-if (mysqli_query($conn, $sql)) {
- 		echo "";
-} 
-else {
- 
-		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
- 
-$count=1;
-$result = mysqli_query($conn, $sql);
- 
-if (mysqli_num_rows($result) > 0) {
-// output data of each row 
-while($row = mysqli_fetch_assoc($result)) { ?>
- 
- <tbody>
-					<tr>
-					<th> 
-					<?php echo $row['Prescription_ID']; ?>
-					</th>
-					<td>
-					<?php echo $row['Doctor_ID']; ?>
-					</td>
-					<td>
-					<?php echo $row['Medication_ID']; ?>
-					</td>
-					<td>
-					<?php echo $row['Condition_ID']; ?>
-					</td>
-					<td>
-					<?php echo $row['Pharmacy_ID']; ?>
-					</td>
-					<td>
-					<?php echo $row['Start_Date']; ?>
-					</td>
-					<td>
-					<?php echo $row['End_Date']; ?>
-					</td>
-					</tr>
+$conn = mysqli_connect("localhost","root","","HealthcareDB");
+$sql = "CALL ViewUpcomingScripts ('abc5-48dc-b830', '1');";
 
-
-</tbody>         
-<?php
-$count++;
-}
-} else {
-echo '0 results';
-}?>  
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	<table>
+			<tbody>
+                <tr>
+                    <th>Prescription ID</th>
+					<td> <?php echo $row['prescription_id']; ?></td>
+				</tr>
+				<tr>
+                    <th>Medication</th>
+					<td> <?php echo $row['medication']; ?></td>
+				</tr>
+				<tr>
+                    <th>Reason</th>
+					<td> <?php echo $row['reason']; ?></td>
+				</tr>
+				<tr>
+                    <th>Start Date</th>
+					<td> <?php echo $row['start_date']; ?></td>
+				</tr>
+				<tr>
+                    <th>End Date</th>
+					<td> <?php echo $row['end_date']; ?></td>
+				</tr>
+				<tr>
+                    <th>Doctor</th>
+					<td> <?php echo $row['doctor']; ?></td>
+				</tr>
+				<tr>
+                    <th>Doctor Phone</th>
+					<td> <?php echo $row['doctor_phone']; ?></td>
+					</br>
+				</tr>
+			</tbody>	 
+	</table>
+	<?php } ?>
+	<?php	}
+ ?>
 
 <!------------------------------------ PHP End---------------------------------------->
 				</table>
