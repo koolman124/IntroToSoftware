@@ -39,11 +39,11 @@
 
 <!------------------------------------Sidebar Start------------------------------------->
 	<!-- Dashboard Start -->
-      <ul class="sidebar navbar-nav">
+  <ul class="sidebar navbar-nav">
         <li class="nav-item active">
           <a class="nav-link" href="doctor-dash.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span> Patient Summary</span>
+            <span> Patients Summary</span>
           </a>
         </li>
     <!-- Dashboard End -->
@@ -54,13 +54,6 @@
             <span>Upcoming Appointments</span></a>
         </li>
     <!-- Appointment End -->
-     <!-- View Med Info Start -->    
-        <li class="nav-item">
-          <a class="nav-link" href="doctor-med.php">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Patient Medical Records</span></a>
-        </li>
-    <!-- View Med Info End -->
     <!-- Prescription Records Start -->    
         <li class="nav-item">
           <a class="nav-link" href="doctor-rx.php">
@@ -83,7 +76,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Login Screens:</h6>
-            <a class="dropdown-item" href="index.html">Log Out</a>
+            <a class="dropdown-item" href="index.html">Login</a>
             <a class="dropdown-item" href="register.html">Register</a>
             <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
           </div>
