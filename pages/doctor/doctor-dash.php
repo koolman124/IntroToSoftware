@@ -7,8 +7,20 @@
   }
   if (isset($_GET['logout'])) {
   	session_destroy();
-  	unset($_SESSION['username']);
+    unset($_SESSION['username']);
+    unset($_SESSION['access']);
   	header("location: ../../login.php");
+  }
+  
+  if ($_SESSION['access']== 1)
+  {
+    $_SESSION['msg'] = "You are a patient";
+  	header('location: ../patient/patient-dash.php');
+  }
+  if ($_SESSION['access']== 2)
+  {
+    $_SESSION['msg'] = "You are pharmacy";
+  	header('location: ../pharmacy/pharm-dash.php');
   }
 ?>
 
@@ -75,27 +87,12 @@
             <span>Prescriptions</span></a>
         </li>
     <!-- Prescription Records End -->
-    <!-- Test PHP/mySQL connection -->    
-        <li class="nav-item">
-          <a class="nav-link" href="testPHP.php">
+    <li class="nav-item">
+          <a class="nav-link" href="../../index.php?logout='1'">
             <i class="fas fa-fw fa-folder"></i>
-            <span>TEST PHP</span></a>
+            <span>Logout</span></a>
         </li>
-    <!-- Test PHP/mySQL connection --> 
-    <!-- Log Out Start -->    
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Account/Logout</span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Login Screens:</h6>
-            <a class="dropdown-item" href="index.html">Login</a>
-            <a class="dropdown-item" href="register.html">Register</a>
-            <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-          </div>
-        </li>
-     <!-- Log Out End --> 
+     <!-- Log Out End -->  
       </ul>
       
 <!------------------------------------Sidebar End---------------------------------------->
@@ -116,12 +113,13 @@
  
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "troublein421";
 $dbname = "HealthcareDB";
  
 // Create connection
  
 $conn = new mysqli("localhost", "root", "", "HealthcareDB");
+
 $sql = 'SELECT * from Patient';
 //$sql = "SELECT Patient_ID, First_Name, Last_Name FROM Patient";
 if (mysqli_query($conn, $sql)) {

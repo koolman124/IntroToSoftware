@@ -7,10 +7,22 @@
   }
   if (isset($_GET['logout'])) {
   	session_destroy();
-  	unset($_SESSION['username']);
+    unset($_SESSION['username']);
+    unset($_SESSION['access']);
   	header("location: ../../login.php");
   }
-?>
+  
+  if ($_SESSION['access']== 1)
+  {
+    $_SESSION['msg'] = "You are a patient";
+  	header('location: ../patient/patient-dash.php');
+  }
+  if ($_SESSION['access']== 2)
+  {
+    $_SESSION['msg'] = "You are pharmacy";
+  	header('location: ../pharmacy/pharm-dash.php');
+  }
+  ?>
 
 <!DOCTYPE html>
 <html lang="en">

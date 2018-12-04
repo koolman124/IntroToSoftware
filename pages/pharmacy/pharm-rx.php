@@ -3,14 +3,26 @@
 
   if (!isset($_SESSION['username'])) {
   	$_SESSION['msg'] = "You must log in first";
-  	header('location:  ../../login.php');
+  	header('location: ../../login.php');
   }
   if (isset($_GET['logout'])) {
   	session_destroy();
-  	unset($_SESSION['username']);
+    unset($_SESSION['username']);
+    unset($_SESSION['access']);
   	header("location: ../../login.php");
   }
-?>
+  
+  if ($_SESSION['access']== 3)
+  {
+    $_SESSION['msg'] = "You are a doctor";
+  	header('location: ../doctor/doctor-dash.php');
+  }
+  if ($_SESSION['access']== 1)
+  {
+    $_SESSION['msg'] = "You are patient";
+  	header('location: ../patient/patient-dash.php');
+  }
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 

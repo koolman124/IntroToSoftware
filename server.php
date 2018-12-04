@@ -43,7 +43,7 @@ if (isset($_POST['reg_user'])) {
   	$password = md5($password_1);//encrypt the password before saving in the database
 
   	$query = "INSERT INTO `users`(`User_ID`, `Access_Level`, `Username`, `Password_Hash`)
-  			  VALUES('0095-4223-9853','1','$username','$password')";
+  			  VALUES('0095-4243-9453','3','$username','$password')";
   	mysqli_query($db, $query);
   	$_SESSION['username'] = $username;
   	$_SESSION['success'] = "You are now logged in";
@@ -65,10 +65,12 @@ if (isset($_POST['login_user'])) {
   
     if (count($errors) == 0) {
         $password = md5($password);
-        $query = "SELECT * FROM `users` WHERE `Username`='$username' AND `Password_Hash`='$password'";
+        $query = "SELECT * FROM `Users` WHERE `Username`='$username' AND `Password_Hash`='$password'";
         $results = mysqli_query($db, $query);
         if (mysqli_num_rows($results) == 1) {
+          $row = mysqli_fetch_assoc($results);
           $_SESSION['username'] = $username;
+          $_SESSION['access'] = $row['Access_Level'];
           $_SESSION['success'] = "You are now logged in";
           header('location: index.php');
         }else {
@@ -76,5 +78,4 @@ if (isset($_POST['login_user'])) {
         }
     }
   }
-  
-  ?>
+?>
