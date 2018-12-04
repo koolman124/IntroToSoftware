@@ -123,7 +123,7 @@ $dbname = "HealthcareDB";
  
 // Create connection
  
-$conn = new mysqli("localhost", "root", "", "HealthcareDB");
+$conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
 $sql = 'SELECT * from Insurance_Plan, Patient_Insurance';
 
 if (mysqli_query($conn, $sql)) {

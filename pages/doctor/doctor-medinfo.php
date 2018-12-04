@@ -126,7 +126,7 @@ $dbname = "HealthcareDB";
  
 // Create connection
  
-$conn = new mysqli("localhost", "root", "", "HealthcareDB");
+$conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
 $sql = "SELECT * FROM Patient WHERE Patient_ID = '$patientid'";
 if (mysqli_query($conn, $sql)) {
  		echo "";

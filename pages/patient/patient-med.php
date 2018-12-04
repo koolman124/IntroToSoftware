@@ -124,7 +124,7 @@
 
 <?php
 
-$conn = mysqli_connect("localhost","root","","HealthcareDB");
+$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
 $sql = "CALL ViewMedicalInfo ('2a16-4698-811f', 'allergy');";
 
 if($result=mysqli_query($conn,$sql)){

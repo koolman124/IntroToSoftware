@@ -136,7 +136,7 @@ $dbname = "HealthcareDB";
  
 // Create connection
  
-$conn = new mysqli("localhost", "root", "", "HealthcareDB");
+$conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
 $sql = 'SELECT * from Appointment';
 if (mysqli_query($conn, $sql)) 
 {

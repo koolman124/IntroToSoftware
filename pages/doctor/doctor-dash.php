@@ -118,7 +118,7 @@ $dbname = "HealthcareDB";
  
 // Create connection
  
-$conn = new mysqli("localhost", "root", "", "HealthcareDB");
+$conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
 
 $sql = 'SELECT * from Patient';
 //$sql = "SELECT Patient_ID, First_Name, Last_Name FROM Patient";

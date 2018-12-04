@@ -126,7 +126,7 @@
 	
 <?php
  
-$conn = mysqli_connect("localhost","root","","HealthcareDB");
+$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
 $sql = "CALL ViewUpcomingScripts ('abc5-48dc-b830', '2');";
  
 if($result=mysqli_query($conn,$sql)){
