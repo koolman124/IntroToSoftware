@@ -99,11 +99,10 @@
 		<thead>
  			<tr>
  				<th>Prescription ID</th>
- 				<th>Patient ID</th>
- 				<th>Doctor ID</th>
+ 				<th>Patient</th>
+ 				<th>Phone</th>
   				<th>Medication ID</th>
  				<th>Condition ID</th>
-				<th>Pharmacy</th>
  				<th>Start Date</th>
  				<th>End Date</th>
  			</tr>
@@ -114,65 +113,45 @@
 <!------------------------------------ PHP Begin---------------------------------------->
 
                 
+<h1>Upcoming Prescriptions</h1>
+	
+
 <?php
  
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "HealthcareDB";
+$conn = mysqli_connect("localhost","root","","HealthcareDB");
+$sql = "CALL ViewUpcomingScripts ('2134001', '4');";
  
-// Create connection
- 
-$conn = new mysqli("localhost", "root", "", "HealthcareDB");
-$sql = 'SELECT * from Prescription';
-
-if (mysqli_query($conn, $sql)) {
- 		echo "";
-} 
-else {
- 
-		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
- 
-$count=1;
-$result = mysqli_query($conn, $sql);
- 
-if (mysqli_num_rows($result) > 0) {
-// output data of each row 
-while($row = mysqli_fetch_assoc($result)) { ?>
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)) { ?>
  
  <tbody>
 					<tr>
 					<th> 
-					<?php echo $row['Prescription_ID']; ?>
+					<?php echo $row['prescription_id']; ?>
 					</th>
 					<td>
-					<?php echo "</p> <a href=\"pharm-med.php?patient=" . urlencode($row['Patient_ID']) . "\">" . $row['Patient_ID'] . "</a>"; ?>
+					<?php echo $row['doctor']; ?>
 					</td>
 					<td>
-					<?php echo $row['Doctor_ID']; ?>
+					<?php echo $row['doctor_phone']; ?>
 					</td>
 					<td>
-					<?php echo $row['Medication_ID']; ?>
+					<?php echo $row['medication']; ?>
 					</td>
 					<td>
-					<?php echo $row['Condition_ID']; ?>
+					<?php echo $row['reason']; ?>
 					</td>
 					<td>
-					<?php echo $row['Pharmacy_ID']; ?>
+					<?php echo $row['start_date']; ?>
 					</td>
 					<td>
-					<?php echo $row['Start_Date']; ?>
-					</td>
-					<td>
-					<?php echo $row['End_Date']; ?>
+					<?php echo $row['end_date']; ?>
 					</td>
 					</tr>
 
 
 </tbody>         
 <?php
-$count++;
 }
 } else {
 echo '0 results';

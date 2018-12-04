@@ -100,17 +100,17 @@
       <div id="content-wrapper">
 		<div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> Prescriptions</div>
+            <div class="card-header"><i class="fas fa-table"></i> Upcoming Prescriptions</div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered"  width="100%" cellspacing="0">
 		<thead>
  			<tr>
  				<th>Prescription ID</th>
- 				<th>Patient ID</th>
+ 				<th>Patient</th>
+ 				<th>Phone</th>
   				<th>Medication ID</th>
  				<th>Condition ID</th>
-				<th>Pharmacy</th>
  				<th>Start Date</th>
  				<th>End Date</th>
  			</tr>
@@ -122,63 +122,44 @@
 					 <!-- Add .JS when conflicting scripts are filled -->
 <!------------------------------------ PHP Begin---------------------------------------->
 
-                
+ 
+	
 <?php
  
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "HealthcareDB";
+$conn = mysqli_connect("localhost","root","","HealthcareDB");
+$sql = "CALL ViewUpcomingScripts ('abc5-48dc-b830', '2');";
  
-// Create connection
- 
-$conn = new mysqli("localhost", "root", "", "HealthcareDB");
-$sql = 'SELECT * from Prescription';
-
-if (mysqli_query($conn, $sql)) {
- 		echo "";
-} 
-else {
- 
-		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
- 
-$count=1;
-$result = mysqli_query($conn, $sql);
- 
-if (mysqli_num_rows($result) > 0) {
-// output data of each row 
-while($row = mysqli_fetch_assoc($result)) { ?>
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)) { ?>
  
  <tbody>
 					<tr>
 					<th> 
-					<?php echo $row['Prescription_ID']; ?>
+					<?php echo $row['prescription_id']; ?>
 					</th>
 					<td>
-					<?php echo $row['Patient_ID']; ?>
+					<?php echo $row['doctor']; ?>
 					</td>
 					<td>
-          <?php echo "<a href=\"doctor-medications.php?med=" . urlencode($row['Medication_ID']) . "\">" . $row['Medication_ID'] . "</a>"; ?>
+					<?php echo $row['doctor_phone']; ?>
 					</td>
 					<td>
-					<?php echo $row['Condition_ID']; ?>
+					<?php echo $row['medication']; ?>
 					</td>
 					<td>
-					<?php echo $row['Pharmacy_ID']; ?>
+					<?php echo $row['reason']; ?>
 					</td>
 					<td>
-					<?php echo $row['Start_Date']; ?>
+					<?php echo $row['start_date']; ?>
 					</td>
 					<td>
-					<?php echo $row['End_Date']; ?>
+					<?php echo $row['end_date']; ?>
 					</td>
 					</tr>
 
 
 </tbody>         
 <?php
-$count++;
 }
 } else {
 echo '0 results';
