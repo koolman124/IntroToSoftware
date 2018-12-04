@@ -161,7 +161,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 					<?php echo $row['Doctor_ID']; ?>
 					</td>
 					<td>
-					<?php echo $row['Medication']; ?>
+					<?php echo $row['Medication_ID']; ?>
 					</td>
 					<td>
 					<?php echo $row['Condition_ID']; ?>
@@ -218,12 +218,12 @@ echo '0 results';
 <!---------------------------------- Container End -------------------------------------->   
    
     <!-- Bootstrap JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
-    <script src="js/sb-admin.min.js"></script>
-    <script src="js/demo/datatables-demo.js"></script>
-    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../vendor/chart.js/Chart.min.js"></script>
+    <script src="../../vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../../vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="../../js/sb-admin.min.js"></script>
+    <script src="../../js/demo/datatables-demo.js"></script>
+    <script src="../../js/demo/chart-area-demo.js"></script>
