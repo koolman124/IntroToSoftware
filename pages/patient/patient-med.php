@@ -153,7 +153,7 @@ if($result=mysqli_query($conn,$sql)){
 
 <?php
 
-$conn = mysqli_connect("localhost","root","","HealthcareDB");
+$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
 $sql = "CALL ViewMedicalInfo ('0095-4213-9755', 'med_condition');";
 
 if($result=mysqli_query($conn,$sql)){
@@ -182,7 +182,7 @@ if($result=mysqli_query($conn,$sql)){
     
  <?php
 
-$conn = mysqli_connect("localhost","root","","HealthcareDB");
+$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
 $sql = "CALL ViewMedicalInfo ('a1da-41c3-b2a0', 'immunization');";
 
 if($result=mysqli_query($conn,$sql)){
