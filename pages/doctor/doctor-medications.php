@@ -22,6 +22,18 @@
     $_SESSION['msg'] = "You are pharmacy";
   	header('location: ../pharmacy/pharm-dash.php');
   }
+
+  if ($_SESSION['access']== 4)
+  {
+    $_SESSION['msg'] = "You are an insurance";
+  	header('location: ../insurance/insurance-dash.php');
+  }
+
+  if ($_SESSION['access']== 5)
+  {
+    $_SESSION['msg'] = "You are an admin";
+  	header('location: ../admin/admin-dash.php');
+  }
   ?>
 
 <!DOCTYPE html>
@@ -114,13 +126,6 @@
  
 $medid = $_GET['med'];
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "HealthcareDB";
- 
-// Create connection
- 
 $conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
 $sql = "SELECT * from medication where Medication_ID = '$medid'";
 if (mysqli_query($conn, $sql)) {

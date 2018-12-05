@@ -12,27 +12,27 @@
   	header("location: ../../login.php");
   }
   
-  if ($_SESSION['access']== 3)
+  if ($_SESSION['access']== 1)
+  {
+    $_SESSION['msg'] = "You are a patient";
+  	header('location: ../patient/patient-dash.php');
+  }
+
+  if ($_SESSION['access']== 2)
   {
     $_SESSION['msg'] = "You are a doctor";
   	header('location: ../doctor/doctor-dash.php');
   }
-  if ($_SESSION['access']== 2)
+  
+  if ($_SESSION['access']== 3)
   {
     $_SESSION['msg'] = "You are pharmacy";
   	header('location: ../pharmacy/pharm-dash.php');
   }
-
   if ($_SESSION['access']== 4)
   {
-    $_SESSION['msg'] = "You are an insurance";
+    $_SESSION['msg'] = "You are insurance";
   	header('location: ../insurance/insurance-dash.php');
-  }
-
-  if ($_SESSION['access']== 5)
-  {
-    $_SESSION['msg'] = "You are an admin";
-  	header('location: ../admin/admin-dash.php');
   }
   ?>
 <!DOCTYPE html>
@@ -46,7 +46,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Patient - Schedule an Appointment</title>
+    <title>Admin Dashboard</title>
 
     <!-- Bootstrap CSS-->
     <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -60,7 +60,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="patient-dash.php">EMR Portal</a>
+      <a class="navbar-brand mr-1" href="admin-dash.php">EMR Portal</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -77,43 +77,29 @@
 <!------------------------------------Sidebar Start------------------------------------->
 	<!-- Dashboard Start -->
       <ul class="sidebar navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="patient-dash.php">
+        <li class="nav-item active">
+          <a class="nav-link" href="admin-dash.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>My Info</span>
+            <span> View Doctors</span>
+          </a>
+        </li>
+
+        <li class="nav-item ">
+          <a class="nav-link" href="admin-patients.php">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span> View Patients</span>
+          </a>
+        </li>
+
+        <li class="nav-item ">
+          <a class="nav-link" href="admin-parm.php">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span> View Pharmacy</span>
           </a>
         </li>
     <!-- Dashboard End -->
-    <!-- Appointment Start -->    
-        <li class="nav-item active">
-          <a class="nav-link" href="patient-cal.php">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Appointments</span></a>
-        </li>
-    <!-- Appointment End -->
-     <!-- View Med Info Start -->    
+    <!-- Log Out Start -->    
         <li class="nav-item">
-          <a class="nav-link" href="patient-med.php">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>View Medical Info</span></a>
-        </li>
-    <!-- View Med Info End -->
-    <!-- Prescription Records Start -->    
-        <li class="nav-item">
-          <a class="nav-link" href="patient-rx.php">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Prescription Records</span></a>
-        </li>
-    <!-- Prescription Records End -->
-    <!-- Insurance Policy Start -->    
-        <li class="nav-item">
-          <a class="nav-link" href="patient-insurance.php">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>View Insurance Policy</span></a>
-        </li>
-    <!-- Insurance Policy End -->
-    <!-- Test PHP/mySQL connection -->    
-    <li class="nav-item">
           <a class="nav-link" href="../../index.php?logout='1'">
             <i class="fas fa-fw fa-folder"></i>
             <span>Logout</span></a>
@@ -124,88 +110,84 @@
 <!--------------------------------- Container Start ------------------------------------->
 
       <div id="content-wrapper">
-        <div class="container-fluid">
+		<div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> Appointments</div>
+            <div class="card-header"><i class="fas fa-table"></i> Doctors</div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered"  width="100%" cellspacing="0">
-                	<thead>
-                    <tr>
-                    <th>Date</th>
-                    <th>Type</th>
-                    <th>Reason</th>
-                    <th>Doctors Name</th>
-                    <th>Doctors Email</th>
-                    </tr>
- 					        </thead>
-                
-                
+		<thead>
+ 			<tr>
+ 				<th>Doctor ID</th>
+ 				<th>First Name</th>
+  				<th>Last Name</th>
+ 				<th>Phone</th>
+				<th>Email</th>
+ 			</tr>
+ 		</thead>
 
-				<!-- Add .JS alert to remind patient of appointment -->
-			<!-- Add .JS Calendar or HTML Form to select an appointment date -->
-
+			<!-- Concatenate Insurance_Plan and Patient_Insurance Tables -->
+						
 <!------------------------------------ PHP Begin---------------------------------------->
 
+                
 <?php
 $uid = $_SESSION['userid'];
-$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewUpcomingAppts ('$uid', '1' );";
 
-if($result=mysqli_query($conn,$sql)){
-	while($row=mysqli_fetch_assoc($result)){ ?>
-	
-			
-	<script language="javascript">
-		alert("Alert: Upcoming Appointment");
-	</script>
-				 
-	<?php } ?>
-	<?php	}
- ?>
+$conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
+$sql = "SELECT * FROM doctor";
 
-
-<?php
-$uid = $_SESSION['userid'];
-$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewUpcomingAppts ('$uid', '1' );";
-
-if($result=mysqli_query($conn,$sql)){
-	while($row=mysqli_fetch_assoc($result)){ ?>
-	
-			<tbody>
-    
-					<tr>
-            <td>
-            <?php echo $row['Date']; ?>
-            </td>
-            <td> 
-            <?php echo $row['Type']; ?>
-            </td>
-            <td>
-            <?php echo $row['Reason']; ?>
-            </td>
-            <td>
-            <?php echo $row['DoctorName']; ?>
-            </td>
-            <td>
-            <?php echo $row['DoctorEmail']; ?>
-            </td>
-					</tr>
-			</tbody>	 
-	<?php } ?>
-	<?php	}
- ?>
+if (mysqli_query($conn, $sql)) {
+ 		echo "";
+} 
+else {
  
+		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+ 
+$count=1;
+$result = mysqli_query($conn, $sql);
+ 
+if (mysqli_num_rows($result) > 0) {
+// output data of each row 
+while($row = mysqli_fetch_assoc($result)) { ?>
+ 
+ <tbody>
+					<tr>
+					<th> 
+					<?php echo $row['Doctor_ID']; ?>
+					</th>
+					<td>
+					<?php echo $row['First_Name']; ?>
+					</td>
+					<td>
+					<?php echo $row['Last_Name']; ?>
+					</td>
+					<td>
+					<?php echo $row['Phone']; ?>
+					</td>
+					<td>
+					<?php echo $row['Email']; ?>
+					</td>
+					</tr>
+
+</tbody>         
+<?php
+$count++;
+}
+} else {
+echo '0 results';
+}?>  
 
 <!------------------------------------ PHP End---------------------------------------->
-                  <a class="btn btn-dark" href="patient-appointment.php">Schedule an Appointment</a>
-                </table>         
+
+
+
+                </table>           
               </div>
             </div>
             <div class="card-footer small text-muted"></div>
           </div>
-
         </div>
         <!-- /.container-fluid -->
 
@@ -228,7 +210,6 @@ if($result=mysqli_query($conn,$sql)){
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fas fa-angle-up"></i>
     </a>
-    
 <!---------------------------------- Container End -------------------------------------->   
    
     <!-- Bootstrap JavaScript-->
@@ -241,7 +222,3 @@ if($result=mysqli_query($conn,$sql)){
     <script src="../../js/sb-admin.min.js"></script>
     <script src="../../js/demo/datatables-demo.js"></script>
     <script src="../../js/demo/chart-area-demo.js"></script>
-
-  </body>
-
-</html>

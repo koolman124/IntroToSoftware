@@ -29,6 +29,12 @@
     $_SESSION['msg'] = "You are pharmacy";
   	header('location: ../pharmacy/pharm-dash.php');
   }
+
+  if ($_SESSION['access']== 5)
+  {
+    $_SESSION['msg'] = "You are an admin";
+  	header('location: ../admin/admin-dash.php');
+  }
   ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +61,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="inusrance-dash.php">EMR Portal</a>
+      <a class="navbar-brand mr-1" href="insurance-dash.php">EMR Portal</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -79,13 +85,6 @@
           </a>
         </li>
     <!-- Dashboard End -->
-    <!-- View Med Info Start -->    
-        <li class="nav-item">
-          <a class="nav-link" href="insurance-med.php">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Patient Summary</span></a>
-        </li>
-    <!-- View Med Info End -->
     <!-- Log Out Start -->    
         <li class="nav-item">
           <a class="nav-link" href="../../index.php?logout='1'">

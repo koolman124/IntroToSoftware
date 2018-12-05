@@ -22,6 +22,18 @@
     $_SESSION['msg'] = "You are patient";
   	header('location: ../patient/patient-dash.php');
   }
+
+  if ($_SESSION['access']== 4)
+  {
+    $_SESSION['msg'] = "You are an insurance";
+  	header('location: ../insurance/insurance-dash.php');
+  }
+
+  if ($_SESSION['access']== 5)
+  {
+    $_SESSION['msg'] = "You are an admin";
+  	header('location: ../admin/admin-dash.php');
+  }
   ?>
 <!DOCTYPE html>
 <html lang="en">
