@@ -106,11 +106,9 @@
                 <table class="table table-bordered"  width="100%" cellspacing="0">
 		<thead>
  			<tr>
- 				<th>Patient ID</th>
- 				<th>First Name</th>
-  				<th>Last Name</th>
- 				<th>Plan ID</th>
-				<th>Description</th>
+ 				<th>Policy ID</th>
+ 				<th>Insurance</th>
+  				<th>Phone</th>
  			</tr>
  		</thead>
 
@@ -136,7 +134,7 @@ else {
 $count=1;
 $result = mysqli_query($conn, $sql);
  
-if (mysqli_num_rows($result) > 0) {
+if (mysqli_num_rows($result) >= 0) {
 // output data of each row 
 while($row = mysqli_fetch_assoc($result)) { ?>
  
@@ -166,6 +164,111 @@ $count++;
 } else {
 echo '0 results';
 }?>  
+
+<?php
+ 
+$servername = "localhost";
+$username = "root";
+$password = "troublein421";
+$dbname = "HealthcareDB";
+ 
+// Create connection
+ 
+$conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
+$sql = 'SELECT * from Insurance_Provider WHERE Provider_ID = "1"';
+
+if (mysqli_query($conn, $sql)) {
+ 		echo "";
+} 
+else {
+ 
+		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+ 
+$count=1;
+$result = mysqli_query($conn, $sql);
+ 
+if (mysqli_num_rows($result) > 0) {
+// output data of each row 
+while($row = mysqli_fetch_assoc($result)) { ?>
+ 
+ <tbody>
+					<tr>
+					<th> 
+					<?php echo $row['Provider_ID']; ?>
+					</th>
+					<td>
+					<?php echo $row['Name']; ?>
+					</td>
+					<td>
+					<?php echo $row['Phone']; ?>
+					</td>
+					</tr>
+
+</tbody>         
+<?php
+$count++;
+}
+} else {
+echo '0 results';
+}?>  
+
+	<thead>
+ 			<tr>
+ 				<th>Plan ID</th>
+ 				<th>Name</th>
+  				<th>Description</th>
+ 			</tr>
+ 		</thead>
+
+<?php
+ 
+$servername = "localhost";
+$username = "root";
+$password = "troublein421";
+$dbname = "HealthcareDB";
+ 
+// Create connection
+ 
+$conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
+$sql = 'SELECT * from Insurance_Plan WHERE Provider_ID = "1"';
+
+if (mysqli_query($conn, $sql)) {
+ 		echo "";
+} 
+else {
+ 
+		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+ 
+$count=1;
+$result = mysqli_query($conn, $sql);
+ 
+if (mysqli_num_rows($result) > 0) {
+// output data of each row 
+while($row = mysqli_fetch_assoc($result)) { ?>
+ 
+ <tbody>
+					<tr>
+					<th> 
+					<?php echo $row['Plan_ID']; ?>
+					</th>
+					<td>
+					<?php echo $row['Name']; ?>
+					</td>
+					<td>
+					<?php echo $row['Description']; ?>
+					</td>
+					</tr>
+
+</tbody>         
+<?php
+$count++;
+}
+} else {
+echo '0 results';
+}?>  
+
 
 <!------------------------------------ PHP End---------------------------------------->
 
