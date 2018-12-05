@@ -44,8 +44,12 @@ if (isset($_POST['reg_user'])) {
   			  VALUES('323829748972','2','$username','$password')";
   	mysqli_query($db, $query);
     $_SESSION['username'] = $username;
-    $_SESSION['access'] = '2';
-  	$_SESSION['success'] = "You are now logged in";
+    $_SESSION['success'] = "You are now logged in";
+    $query = "SELECT * FROM `Users` WHERE `Username`='$username' AND `Password_Hash`='$password'";
+    $results = mysqli_query($db, $query);
+    $row = mysqli_fetch_assoc($results);
+    $_SESSION['userid'] = $row['User_ID'];
+    $_SESSION['access'] = $row['Access_Level'];
   	header('location: index.php');
   }
 }
@@ -69,6 +73,7 @@ if (isset($_POST['login_user'])) {
         if (mysqli_num_rows($results) == 1) {
           $row = mysqli_fetch_assoc($results);
           $_SESSION['username'] = $username;
+          $_SESSION['userid'] = $row['User_ID'];
           $_SESSION['access'] = $row['Access_Level'];
           $_SESSION['success'] = "You are now logged in";
           header('location: index.php');

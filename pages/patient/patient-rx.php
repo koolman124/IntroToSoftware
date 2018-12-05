@@ -129,9 +129,9 @@
 <h1>My Prescriptions</h1>
 
 <?php
-
+$uid = $_SESSION['userid'];
 $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewUpcomingScripts ('abc5-48dc-b830', '1');";
+$sql = "CALL ViewUpcomingScripts ('$uid', '1');";
 
 if($result=mysqli_query($conn,$sql)){
 	while($row=mysqli_fetch_assoc($result)){ ?>
@@ -164,7 +164,6 @@ if($result=mysqli_query($conn,$sql)){
 				<tr>
                     <th>Doctor Phone</th>
 					<td> <?php echo $row['doctor_phone']; ?></td>
-					</br>
 				</tr>
 				<tr>
                     <th>Pharmacy</th>
@@ -173,7 +172,6 @@ if($result=mysqli_query($conn,$sql)){
 				<tr>
                     <th>Pharmacy Phone</th>
 					<td> <?php echo $row['pharmacy_phone']; ?></td>
-					</br>
 				</tr>
 			</tbody>	 
 	</table>

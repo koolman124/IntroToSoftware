@@ -124,16 +124,9 @@
 			<!--- Add .js button and forms to edit user data, update db --->
 				
 <?php
- 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "HealthcareDB";
- 
-// Create connection
- 
+$uid = $_SESSION['userid'];
 $conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
-$sql = 'SELECT * FROM Patient WHERE Patient_ID = "0129-4224-9579"';
+$sql = "SELECT * FROM Patient WHERE Patient_ID = '$uid'";
 if (mysqli_query($conn, $sql)) {
  		echo "";
 } 

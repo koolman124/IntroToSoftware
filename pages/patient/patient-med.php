@@ -123,9 +123,9 @@
 <!--- repeat steps for Tables: Allergy, Condition, Immunization, Surgery, Treatment, Medications--->          
 
 <?php
-
+$uid = $_SESSION['userid'];
 $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewMedicalInfo ('2a16-4698-811f', 'allergy');";
+$sql = "CALL ViewMedicalInfo ('$uid', 'allergy');";
 
 if($result=mysqli_query($conn,$sql)){
 	while($row=mysqli_fetch_assoc($result)){ ?>
@@ -154,7 +154,7 @@ if($result=mysqli_query($conn,$sql)){
 <?php
 
 $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewMedicalInfo ('0095-4213-9755', 'med_condition');";
+$sql = "CALL ViewMedicalInfo ('$uid', 'med_condition');";
 
 if($result=mysqli_query($conn,$sql)){
 	while($row=mysqli_fetch_assoc($result)){ ?>
@@ -183,7 +183,7 @@ if($result=mysqli_query($conn,$sql)){
  <?php
 
 $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewMedicalInfo ('a1da-41c3-b2a0', 'immunization');";
+$sql = "CALL ViewMedicalInfo ('$uid', 'immunization');";
 
 if($result=mysqli_query($conn,$sql)){
 	while($row=mysqli_fetch_assoc($result)){ ?>
@@ -208,7 +208,7 @@ if($result=mysqli_query($conn,$sql)){
 <?php
 
 $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewMedicalInfo ('0095-4213-9755', 'surgery');";
+$sql = "CALL ViewMedicalInfo ('$uid', 'surgery');";
 
 
 if($result=mysqli_query($conn,$sql)){
@@ -238,7 +238,7 @@ if($result=mysqli_query($conn,$sql)){
  <?php
 
 $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewMedicalInfo ('0095-4213-9755', 'treatment');";
+$sql = "CALL ViewMedicalInfo ('$uid', 'treatment');";
 
 if($result=mysqli_query($conn,$sql)){
 	while($row=mysqli_fetch_assoc($result)){ ?>
@@ -271,7 +271,7 @@ if($result=mysqli_query($conn,$sql)){
 <?php
 
 $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewMedicalInfo ('0095-4213-9755', 'medication');";
+$sql = "CALL ViewMedicalInfo ('$uid', 'medication');";
 
 if($result=mysqli_query($conn,$sql)){
 	while($row=mysqli_fetch_assoc($result)){ ?>
@@ -304,7 +304,7 @@ if($result=mysqli_query($conn,$sql)){
  <?php
 
 $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewMedicalInfo ('a1da-41c3-b2a0', 'medical_data');";
+$sql = "CALL ViewMedicalInfo ('$uid', 'medical_data');";
 
 if($result=mysqli_query($conn,$sql)){
 	while($row=mysqli_fetch_assoc($result)){ ?>

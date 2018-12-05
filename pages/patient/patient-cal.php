@@ -136,9 +136,9 @@
 <!------------------------------------ PHP Begin---------------------------------------->
 
 <?php
-
+$uid = $_SESSION['userid'];
 $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewUpcomingAppts ('abc5-48dc-b830', '1' );";
+$sql = "CALL ViewUpcomingAppts ('$uid', '1' );";
 
 if($result=mysqli_query($conn,$sql)){
 	while($row=mysqli_fetch_assoc($result)){ ?>
@@ -154,9 +154,9 @@ if($result=mysqli_query($conn,$sql)){
 
 
 <?php
-
+$uid = $_SESSION['userid'];
 $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewUpcomingAppts ('abc5-48dc-b830', '1' );";
+$sql = "CALL ViewUpcomingAppts ('$uid', '1' );";
 
 if($result=mysqli_query($conn,$sql)){
 	while($row=mysqli_fetch_assoc($result)){ ?>
