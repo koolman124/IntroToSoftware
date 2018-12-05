@@ -131,7 +131,7 @@
 <?php
 $uid = $_SESSION['userid'];
 $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewUpcomingScripts ('$uid', '1');";
+$sql = "CALL ViewAllScripts ('$uid', '1');";
 
 if($result=mysqli_query($conn,$sql)){
 	while($row=mysqli_fetch_assoc($result)){ ?>
