@@ -403,6 +403,70 @@ if($result=mysqli_query($conn,$sql)){
 
 	<?php	}
  ?>
+ 
+ <?php
+         if(isset($_POST['update'])) {
+            
+            
+            $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
+            
+            if(! $conn ) {
+               die('Could not connect: ' . mysqli_error($conn));
+            }
+            
+            $patient_id = '0095-4213-9755';
+            $first_name = $_POST['First_Name'];
+            $last_name = $_POST['Last_Name'];
+            
+           // $sql = 'SELECT * FROM Patient WHERE Patient_ID = "0095-4213-9755"';
+
+            $sql = "UPDATE Patient SET First_Name = " . $first_name  "
+               WHERE Patient_ID = ' .$patient_id '";
+               
+            //$sql = "UPDATE employee ". "SET emp_salary = $emp_salary ". "WHERE emp_id = $emp_id" ;
+               
+			$retval = mysqli_query($conn,$sql);
+			            
+            if(! $retval ) {
+               die('Could not update data: ' . mysqli_error($conn));
+            }
+            echo "Updated data successfully\n";
+            
+            mysqli_close($conn);
+            
+         }else {
+            ?>
+               <form method = "post" action = "<?php $_PHP_SELF ?>">
+                  <table width = "400" border =" 0" cellspacing = "1" 
+                     cellpadding = "2">
+                  
+                     <tr>
+                        <td width = "100">First Name</td>
+                        <td><input name = "first_name" type = "text" 
+                           id = "first_name"></td>
+                     </tr>
+                  
+                    
+                  
+                     <tr>
+                        <td width = "100"> </td>
+                        <td> </td>
+                     </tr>
+                  
+                     <tr>
+                        <td width = "100"> </td>
+                        <td>
+                           <input name = "update" type = "submit" 
+                              id = "update" value = "Update">
+                        </td>
+                     </tr>
+                  
+                  </table>
+               </form>
+            <?php
+         }
+      ?>
+ 
 <!------------------------------------ PHP End---------------------------------------->
 
                 </table>
