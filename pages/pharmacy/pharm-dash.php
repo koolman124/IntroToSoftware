@@ -92,14 +92,14 @@
       <div id="content-wrapper">
 		<div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> Pending Prescriptions</div>
+            <div class="card-header"><i class="fas fa-table"></i> Upcoming Prescriptions</div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered"  width="100%" cellspacing="0">
 		<thead>
  			<tr>
  				<th>Prescription ID</th>
- 				<th>Patient</th>
+ 				<th>Doctor</th>
  				<th>Phone</th>
   				<th>Medication ID</th>
  				<th>Condition ID</th>
@@ -112,9 +112,7 @@
 						
 <!------------------------------------ PHP Begin---------------------------------------->
 
-                
-<h1>Upcoming Prescriptions</h1>
-	
+                	
 
 <?php
 $uid = $_SESSION['userid'];
