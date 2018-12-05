@@ -122,10 +122,11 @@
 <!------------------------------------ PHP Begin---------------------------------------->
 
                 
-                <?php
+<?php
+$uid = $_SESSION['userid'];
 
 $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewUpcomingAppts ('230532', '2' );";
+$sql = "CALL ViewUpcomingAppts ('$uid', '2' );";
 
 if($result=mysqli_query($conn,$sql)){
 	while($row=mysqli_fetch_assoc($result)){ ?>

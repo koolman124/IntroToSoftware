@@ -125,7 +125,7 @@
  
 	
 <?php
- 
+$uid = $_SESSION['userid'];
 $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
 $sql = "CALL ViewUpcomingScripts ('abc5-48dc-b830', '2');";
  

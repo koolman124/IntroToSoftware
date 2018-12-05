@@ -110,14 +110,7 @@
  
                 
 <?php
- 
-$servername = "localhost";
-$username = "root";
-$password = "troublein421";
-$dbname = "HealthcareDB";
- 
-// Create connection
- 
+$uid = $_SESSION['userid'];
 $conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
 
 $sql = 'SELECT * from Patient';

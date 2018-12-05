@@ -12,7 +12,7 @@
   	header("location: ../../login.php");
   }
   
-  if ($_SESSION['access']== 3)
+  if ($_SESSION['access']== 2)
   {
     $_SESSION['msg'] = "You are a doctor";
   	header('location: ../doctor/doctor-dash.php');
