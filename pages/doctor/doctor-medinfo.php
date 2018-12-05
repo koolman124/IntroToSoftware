@@ -450,6 +450,64 @@ if($result=mysqli_query($conn,$sql)){
             <?php
          }
       ?>
+    
+      
+      <?php
+		 $patientid = $_GET['patient'];
+		 	
+         if(isset($_POST['update'])) {
+            
+            
+            $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
+            
+            if(! $conn ) {
+               die('Could not connect: ' . mysqli_error($conn));
+            }
+            
+            $medicine = $_POST['Medication_ID'];
+           
+
+            if( isset($_POST['Medication_ID']) && !empty($_POST['Medication_ID']) )
+            {
+                $sql = "CALL WriteScript ('230532','$patientid', '$medicine','43878008','2134001','errorcode') ";
+                //"UPDATE Patient_Allergy SET Allergy_ID = '$allergy' WHERE Patient_ID = '$patientid'";
+                //CALL WriteScript ('230532','$patientid', '308192','43878008','2134001');
+                //SET @p0='230532'; SET @p1='0095-4213-9755'; SET @p2='308192'; 
+                //SET @p3='43878008'; SET @p4='2134001'; 
+                //CALL `WriteScript`(@p0, @p1, @p2, @p3, @p4, @p5); SELECT @p5 AS `errorcode`;              
+                $retval = mysqli_query($conn,$sql);
+                            
+                if(! $retval ) {
+                die('Could not update data: ' . mysqli_error($conn));
+                }
+            }
+            
+            echo "Updated data successfully\n";
+            
+            mysqli_close($conn);
+            
+         }else {
+            ?>
+            <div class="container">
+               <form method = "post" action ="<?php $_PHP_SELF ?>">
+                     <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                    <input name="Medication_ID" type="text" id="Medication_ID" class="form-control">
+                                    <p>Write a Prescription</p>
+                                    <label for="Medication_ID">Medication_ID</label>
+                            </div>
+                        </div>
+                    </div>    
+                    
+                    <button name="update" class="btn btn-primary btn-block" type ="submit" id="update" value ="Update"> Submit Prescription </button>
+               </form>
+            </div>
+            <?php
+         }
+      ?>
+
+
  
 <!------------------------------------ PHP End---------------------------------------->
 
