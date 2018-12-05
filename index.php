@@ -32,7 +32,7 @@
     $_SESSION['msg'] = "You are an insurance";
   	header('location: /pages/insurance/insurance-dash.php');
   }
-  if ($_SESSION['access']== 5)
+  if ($_SESSION['access']== 0)
   {
     $_SESSION['msg'] = "You are an admin";
   	header('location: /pages/admin/admin-dash.php');

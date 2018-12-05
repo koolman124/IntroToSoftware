@@ -110,7 +110,7 @@
       <div class="card card-login mx-auto mt-5">
         <div class="card-header">Register an Account</div>
         <div class="card-body">
-          <form method="post" action="../../register.php">
+          <form method="post" action="admin-register.php">
           <?php include('../../errors.php'); ?>   
             <div class="form-group">
               <div class="form-label-group">
