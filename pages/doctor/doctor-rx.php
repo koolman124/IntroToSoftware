@@ -122,7 +122,59 @@
 					 <!-- Add .JS when conflicting scripts are filled -->
 <!------------------------------------ PHP Begin---------------------------------------->
 
- 
+<?php
+		 $uid = $_SESSION['userid'];
+
+         if(isset($_POST['update'])) {
+            
+            
+            $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
+            
+            if(! $conn ) {
+               die('Could not connect: ' . mysqli_error($conn));
+            }
+            
+            $medication = $_POST['medication_id'];
+            
+            $sql = "UPDATE Patient SET First_Name = '$first_name' WHERE Patient_ID = '$uid'";
+            
+            // CALL WriteScript ('230532', '0095-4213-9755', '308192', '43878008', '2134001');  
+            // SET @p0='230532'; SET @p1='0095-4213-9755'; SET @p2='308192'; SET @p3='43878008'; 
+            // SET @p4='2134001'; CALL `WriteScript`(@p0, @p1, @p2, @p3, @p4, @p5); 
+            // SELECT @p5 AS `errorcode`; 
+                            
+			$retval = mysqli_query($conn,$sql);
+			            
+            if(! $retval ) {
+               die('Could not update data: ' . mysqli_error($conn));
+            }
+            echo "Updated data successfully\n";
+            
+            mysqli_close($conn);
+            
+         }else {
+            ?>
+               <form method = "post" action ="<?php $_PHP_SELF ?>">
+                  <table width = "400" border =" 0" cellspacing = "1" 
+                     cellpadding = "2">
+                  
+                     <tr>
+                        <td width = "100">First Name</td>
+                        <td><input name="fname" type="text" id="fname" class="form-control"></td>
+                     </tr>
+                        <td>
+                           <button name="update" class="btn btn-primary btn-block" type ="submit" id="update" value ="Update"> Update </button>
+                        </td>
+                     </tr>
+                  
+                  </table>
+               </form>
+            <?php
+         }
+      ?>
+
+
+<!-- 
 	
 <?php
 $uid = $_SESSION['userid'];
@@ -163,6 +215,9 @@ if($result=mysqli_query($conn,$sql)){
 } else {
 echo '0 results';
 }?>  
+
+-->
+
 
 <!------------------------------------ PHP End---------------------------------------->
 
