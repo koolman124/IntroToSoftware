@@ -137,12 +137,16 @@
                die('Could not connect: ' . mysqli_error($conn));
             }
             
-            $patient_id = '0095-4213-9755';
-            $first_name = $_POST['fname'];
+            $appt_id = rand() * 1000000;
+            $uid = $_SESSION['userid'];
+            $date = $_POST['date'];
+            $doc = $_POST['doctor'];
+
             
-            $sql = "UPDATE Patient SET First_Name = '$first_name' WHERE Patient_ID = '$patient_id'";
+            $query = "INSERT INTO `Appointment`(`Appointment_ID`,`Date`,`Patient_ID`, `Appt_Type`,`Condition_ID`,`Doctor_ID`)
+                VALUES('$appt_id','$date','$uid','Consultation for treatment',NULL,$doc)";
                               
-			$retval = mysqli_query($conn,$sql);
+			$retval = mysqli_query($conn,$query);
 			            
             if(! $retval ) {
                die('Could not update data: ' . mysqli_error($conn));
@@ -153,36 +157,51 @@
             
          }else {
             ?>
-               <form method = "post" action ="<?php $_PHP_SELF ?>">
-                  <table width = "400" border =" 0" cellspacing = "1" 
-                     cellpadding = "2">
-                  
-                     <tr>
-                        <td width = "100">First Name</td>
-                        <td><input name="fname" type="text" id="fname" class="form-control"></td>
-                     </tr>
-                        <td>
-                           <button name="update" class="btn btn-primary btn-block" type ="submit" id="update" value ="Update"> Update </button>
-                        </td>
-                     </tr>
-                  
-                  </table>
-               </form>
                <div class="container">
-                        <form method="post" action="login.php">
-                            <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="text" id="inputUser" name="username" class="form-control" placeholder="Username" required="required" autofocus="autofocus">
-                                <label for="inputUser">Username</label>
+                        <form method="post" action="<?php $_PHP_SELF ?>">
+                            <div class="form-group row">
+                                <div class="form-label-group col">
+                                    <input name="date" type="date" id="fname" class="form-control"></td>
+                                    <label for="date">Date</label>
+                                </div>
+                                <div class="input-group col">
+                                <div class="input-group-prepend">
+                                <?php 
+                                    $conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
+                                    $sql = 'SELECT * from Doctor';
+                                    if (mysqli_query($conn, $sql)) {
+                                        echo "";
+                                    } 
+                                    else {
+                                        
+                                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                    }
+                                        
+                                    $count=1;
+                                    $result = mysqli_query($conn, $sql);
+                                        
+                                    if (mysqli_num_rows($result) > 0) {
+                                    // output data of each row 
+                                    $x=0;
+                                    while($x < 5) {
+                                        $row = mysqli_fetch_assoc($result);
+                                        echo "<input type='radio' class='list-group-item list-group-item-action' id='doctor' name='doctor' value=$row[Doctor_ID]"; echo">"; echo $row['First_Name'];?> <?php echo $row['Last_Name']; echo "</input>";
+                                        ++$x;
+                                    }
+                                    echo "</div>";
+                                    while($row = mysqli_fetch_assoc($result)) { ?>
+                                    
+                                    <?php
+                                    $count++;
+                                    }
+                                    } else {
+                                    echo '0 results';
+                                    }?>  
+                                
+                                </div>
                             </div>
                             </div>
-                            <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="required">
-                                <label for="inputPassword">Password</label>
-                            </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block" name="login_user">Login</button>
+                            <button name="update" class="btn btn-primary btn-block" type ="submit" id="update" value ="Update"> Schedule </button>
                         </form>
                 </div>
             <?php
@@ -191,7 +210,7 @@
  
 
 <!------------------------------------ PHP End---------------------------------------->
-                </table>         
+                </table> 
               </div>
             </div>
             <div class="card-footer small text-muted"></div>
