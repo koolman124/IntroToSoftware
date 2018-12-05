@@ -412,10 +412,8 @@ if($result=mysqli_query($conn,$sql)){
             
             $patient_id = '0095-4213-9755';
             $first_name = $_POST['fname'];
-            $last_name = $_POST['Last_Name'];
             
-            $sql = "UPDATE Patient SET First_Name = '$first_name'
-               WHERE Patient_ID = ' $patient_id '";
+            $sql = "UPDATE Patient SET First_Name = '$first_name' WHERE Patient_ID = '$patient_id'";
                               
 			$retval = mysqli_query($conn,$sql);
 			            
@@ -434,7 +432,7 @@ if($result=mysqli_query($conn,$sql)){
                   
                      <tr>
                         <td width = "100">First Name</td>
-                        <td><input name = "fname" type = "text" ></td>
+                        <td><input name="fname" type="text" id="fname" ></td>
                      </tr>
                         <td>
                            <input name = "update" type = "submit" id = "update" value = "Update">
