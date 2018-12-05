@@ -125,7 +125,7 @@
                 <?php
 
 $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewUpcomingAppts ('2949907', '2' );";
+$sql = "CALL ViewUpcomingAppts ('230532', '2' );";
 
 if($result=mysqli_query($conn,$sql)){
 	while($row=mysqli_fetch_assoc($result)){ ?>
