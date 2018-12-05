@@ -3,14 +3,33 @@
 
   if (!isset($_SESSION['username'])) {
   	$_SESSION['msg'] = "You must log in first";
-  	header('location: login.php');
+  	header('location: ../../login.php');
   }
   if (isset($_GET['logout'])) {
   	session_destroy();
-  	unset($_SESSION['username']);
-  	header("location: login.php");
+    unset($_SESSION['username']);
+    unset($_SESSION['access']);
+  	header("location: ../../login.php");
   }
-?>
+  
+  if ($_SESSION['access']== 1)
+  {
+    $_SESSION['msg'] = "You are a patient";
+  	header('location: ../patient/patient-dash.php');
+  }
+
+  if ($_SESSION['access']== 2)
+  {
+    $_SESSION['msg'] = "You are a doctor";
+  	header('location: ../doctor/doctor-dash.php');
+  }
+  
+  if ($_SESSION['access']== 3)
+  {
+    $_SESSION['msg'] = "You are pharmacy";
+  	header('location: ../pharmacy/pharm-dash.php');
+  }
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,16 +120,10 @@
 
                 
 <?php
- 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "HealthcareDB";
- 
-// Create connection
- 
+$uid = $_SESSION['userid'];
+
 $conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
-$sql = 'SELECT * from Insurance_Plan, Patient_Insurance';
+$sql = "CALL ViewPatientInfo ('$uid', '4' );";
 
 if (mysqli_query($conn, $sql)) {
  		echo "";
