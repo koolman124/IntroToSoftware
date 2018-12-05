@@ -40,7 +40,7 @@
                 <label for="inputPassword">Password</label>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-block" name="login_user">Login</button>
+            <button type="submit" class="btn btn-dark btn-block" name="login_user">Login</button>
           </form>
           <div class="text-center">
             <a class="d-block small mt-3" href="register.php">Register an Account</a>
