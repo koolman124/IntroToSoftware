@@ -187,7 +187,7 @@ if($result=mysqli_query($conn,$sql)){
  
 
 <!------------------------------------ PHP End---------------------------------------->
-                  <a href="patient-appointment.php">Schedule an Appointment</a>
+                  <a class="btn btn-dark" href="patient-appointment.php">Schedule an Appointment</a>
                 </table>         
               </div>
             </div>
