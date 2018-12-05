@@ -117,7 +117,7 @@
             <div class="card-header"><i class="fas fa-table"></i>Appointments</div>
             <div class="card-body">
               <div class="table-responsive">
-                <table table border="1" width="100%" cellspacing="0">
+                <table class="table table-bordered"  width="100%" cellspacing="0">
                 	<thead>
  						<tr>
  						<th>Date</th>
@@ -144,7 +144,7 @@ if($result=mysqli_query($conn,$sql)){
 	while($row=mysqli_fetch_assoc($result)){ ?>
 	
 			
-					<h1><?php echo "DON'T FORGET ABOUT YOUR APPOINTMENT!"; ?></h1>
+					<h1><?php echo "ALERT: Upcoming Appointment!"; ?></h1>
 				 
 		
 	<?php } ?>
