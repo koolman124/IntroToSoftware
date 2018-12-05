@@ -15,6 +15,7 @@ if (isset($_POST['reg_user'])) {
   $username = mysqli_real_escape_string($db, $_POST['username']);
   $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
   $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
+  $access = mysqli_real_escape_string($db, $_POST['access']);
 
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
@@ -40,8 +41,9 @@ if (isset($_POST['reg_user'])) {
   if (count($errors) == 0) {
   	$password = md5($password_1);//encrypt the password before saving in the database
 
-  	$query = "INSERT INTO `users`(`User_ID`, `Access_Level`, `Username`, `Password_Hash`)
-  			  VALUES('12345','5','$username','$password')";
+    $query = "CALL CreateUser('$username','$access','$password')";
+    //$query = "INSERT INTO `users`(`User_ID`, `Access_Level`, `Username`, `Password_Hash`)
+  	//		  VALUES('12345','$access','$username','$password')";
   	mysqli_query($db, $query);
     $_SESSION['username'] = $username;
     $_SESSION['success'] = "You are now logged in";

@@ -92,9 +92,9 @@
         </li>
 
         <li class="nav-item ">
-          <a class="nav-link" href="admin-parm.php">
+          <a class="nav-link" href="admin-register.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span> View Pharmacy</span>
+            <span> Register User</span>
           </a>
         </li>
     <!-- Dashboard End -->
