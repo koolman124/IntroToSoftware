@@ -76,7 +76,7 @@
         <li class="nav-item">
           <a class="nav-link" href="patient-cal.php">
             <i class="fas fa-fw fa-table"></i>
-            <span>Schedule an Appointment</span></a>
+            <span>Appointments</span></a>
         </li>
     <!-- Appointment End -->
      <!-- View Med Info Start -->    

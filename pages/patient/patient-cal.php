@@ -76,7 +76,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="patient-cal.php">
             <i class="fas fa-fw fa-table"></i>
-            <span>Schedule an Appointment</span></a>
+            <span>Appointments</span></a>
         </li>
     <!-- Appointment End -->
      <!-- View Med Info Start -->    
@@ -114,10 +114,19 @@
       <div id="content-wrapper">
         <div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> Schedule an Appointment</div>
+            <div class="card-header"><i class="fas fa-table"></i>Appointments</div>
             <div class="card-body">
               <div class="table-responsive">
-                
+                <table table border="1" width="100%" cellspacing="0">
+                	<thead>
+ 						<tr>
+ 						<th>Date</th>
+ 						<th>Type</th>
+ 						<th>Reason</th>
+ 						<th>Doctors Name</th>
+						<th>Doctors Email</th>
+ 						</tr>
+ 					</thead>
                 
                 
 
@@ -126,28 +135,56 @@
 
 <!------------------------------------ PHP Begin---------------------------------------->
 
-                
 <?php
+
+$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
+$sql = "CALL ViewUpcomingAppts ('abc5-48dc-b830', '1' );";
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			
+					<h1><?php echo "DON'T FORGET ABOUT YOUR APPOINTMENT!"; ?></h1>
+				 
+		
+	<?php } ?>
+	<?php	}
+ ?>
+
+
+<?php
+
+$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
+$sql = "CALL ViewUpcomingAppts ('abc5-48dc-b830', '1' );";
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			<tbody>
+    
+					<tr>
+					<td>
+					<?php echo $row['Date']; ?>
+					</td>
+					<td> 
+					<?php echo $row['Type']; ?>
+					</td>
+					<td>
+					<?php echo $row['Reason']; ?>
+					</td>
+					<td>
+					<?php echo $row['DoctorName']; ?>
+					</td>
+					<td>
+					<?php echo $row['DoctorEmail']; ?>
+					</td>
+					</tr>
+			</tbody>	 
+		</table>
+	<?php } ?>
+	<?php	}
+ ?>
  
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "HealthcareDB";
- 
-// Create connection
- 
-$conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
-$sql = 'SELECT * from Appointment';
-if (mysqli_query($conn, $sql)) 
-{
- 		echo "";
-} 
-else 
-{
- 
-		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
- ?>  
 
 <!------------------------------------ PHP End---------------------------------------->
 
