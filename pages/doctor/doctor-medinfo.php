@@ -415,16 +415,12 @@ if($result=mysqli_query($conn,$sql)){
             }
             
             $patient_id = '0095-4213-9755';
-            $first_name = $_POST['First_Name'];
+            $first_name = $_POST['fname'];
             $last_name = $_POST['Last_Name'];
             
-           // $sql = 'SELECT * FROM Patient WHERE Patient_ID = "0095-4213-9755"';
-
             $sql = "UPDATE Patient SET First_Name = '$first_name'
                WHERE Patient_ID = ' $patient_id '";
-               
-            //$sql = "UPDATE employee ". "SET emp_salary = $emp_salary ". "WHERE emp_id = $emp_id" ;
-               
+                              
 			$retval = mysqli_query($conn,$sql);
 			            
             if(! $retval ) {
@@ -442,7 +438,7 @@ if($result=mysqli_query($conn,$sql)){
                   
                      <tr>
                         <td width = "100">First Name</td>
-                        <td><input name = "first_name" type = "text" 
+                        <td><input name = "fname" type = "text" 
                            id = "first_name"></td>
                      </tr>
                   
