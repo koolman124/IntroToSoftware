@@ -201,7 +201,7 @@
                                 </div>
                             </div>
                             </div>
-                            <button name="update" class="btn btn-primary btn-block" type ="submit" id="update" value ="Update"> Schedule </button>
+                            <button name="update" class="btn btn-dark btn-block" type ="submit" id="update" value ="Update"> Schedule </button>
                         </form>
                 </div>
             <?php
