@@ -469,12 +469,15 @@ if($result=mysqli_query($conn,$sql)){
 
             if( isset($_POST['Medication_ID']) && !empty($_POST['Medication_ID']) )
             {
-                $sql = "CALL WriteScript ('230532','$patientid', '$medicine','43878008','2134001','errorcode') ";
+                $sql = "CALL WriteScript ('230532','$patientid', '$medicine','43878008','2134001','@errorcode') ";
                 //"UPDATE Patient_Allergy SET Allergy_ID = '$allergy' WHERE Patient_ID = '$patientid'";
                 //CALL WriteScript ('230532','$patientid', '308192','43878008','2134001');
                 //SET @p0='230532'; SET @p1='0095-4213-9755'; SET @p2='308192'; 
                 //SET @p3='43878008'; SET @p4='2134001'; 
                 //CALL `WriteScript`(@p0, @p1, @p2, @p3, @p4, @p5); SELECT @p5 AS `errorcode`;              
+                //CALL WriteScript ('230532','0095-4213-9755', '308192','43878008','2134001', @errorcode);
+
+				$sql = "select @errorcode";
                 $retval = mysqli_query($conn,$sql);
                             
                 if(! $retval ) {
