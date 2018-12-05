@@ -144,9 +144,10 @@ if($result=mysqli_query($conn,$sql)){
 	while($row=mysqli_fetch_assoc($result)){ ?>
 	
 			
-					<h1><?php echo "ALERT: Upcoming Appointment!"; ?></h1>
+	<script language="javascript">
+		alert("Alert: Upcoming Appointment");
+	</script>
 				 
-		
 	<?php } ?>
 	<?php	}
  ?>
