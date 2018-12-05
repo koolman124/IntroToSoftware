@@ -121,14 +121,14 @@
                die('Could not connect: ' . mysqli_error($conn));
             }
             
-            $first_name = $_POST['fname'];
-            $last_name = $_POST['lname'];
-            $address = $_POST['address'];
-            $email = $_POST['email'];
+            $allergy = $_POST['Allergy_ID'];
+            $condition = $_POST['Condition_ID'];
+            $start_date = $_POST['Start_Date'];
+           
 
-            if( isset($_POST['fname']) && !empty($_POST['fname']) )
+            if( isset($_POST['Allergy_ID']) && !empty($_POST['Allergy_ID']) )
             {
-                $sql = "UPDATE Patient SET First_Name = '$first_name' WHERE Patient_ID = '$patientid'";
+                $sql = "UPDATE Patient_Allergy SET Allergy_ID = '$allergy' WHERE Patient_ID = '$patientid'";
                               
                 $retval = mysqli_query($conn,$sql);
                             
@@ -137,9 +137,9 @@
                 }
             }
 
-            if( isset($_POST['lname']) && !empty($_POST['lname']) )
+            if( isset($_POST['Condition_ID']) && !empty($_POST['Condition_ID']) )
             {
-                $sql = "UPDATE Patient SET Last_Name = '$last_name' WHERE Patient_ID = '$patientid'";
+                $sql = "UPDATE Patient_Condition SET Condition_ID = '$condition' WHERE Patient_ID = '$patientid'";
                               
                 $retval = mysqli_query($conn,$sql);
                             
@@ -148,20 +148,9 @@
                 }
             }
 
-            if( isset($_POST['address']) && !empty($_POST['address']) )
+            if( isset($_POST['Start_Date']) && !empty($_POST['Start_Date']) )
             {
-                $sql = "UPDATE Patient SET Address = '$address' WHERE Patient_ID = '$patientid'";
-                              
-                $retval = mysqli_query($conn,$sql);
-                            
-                if(! $retval ) {
-                die('Could not update data: ' . mysqli_error($conn));
-                }
-            }
-
-            if( isset($_POST['email']) && !empty($_POST['email']) )
-            {
-                $sql = "UPDATE Patient SET Email = '$email' WHERE Patient_ID = '$patientid'";
+                $sql = "UPDATE Patient_Allergy SET Start_Date = '$start_date' WHERE Patient_ID = '$patientid'";
                               
                 $retval = mysqli_query($conn,$sql);
                             
@@ -181,43 +170,33 @@
                      <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                    <input name="fname" type="text" id="fname" class="form-control">
-                                    <label for="fname">First Name</label>
+                                    <input name="Allergy_ID" type="text" id="Allergy_ID" class="form-control">
+                                    <label for="Allergy_ID">Allergy ID</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                    <input name="lname" type="text" id="lname" class="form-control">
-                                    <label for="lname">Last Name</label>
+                                    <input name="Condition_ID" type="text" id="Condition_ID" class="form-control">
+                                    <label for="Condition_ID">Condition ID</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <div class="form-label-group">
-                                    <input name="address" type="text" id="address" class="form-control">
-                                    <label for="address"> Address</label>
+                                    <input name="Start_Date" type="text" id="Start_Date" class="form-control">
+                                    <label for="Start_Date"> Start Date</label>
                             </div>
                         </div>
                     </div>    
-                    <div class="form-row">
-                        <div class="col">
-                            <div class="form-label-group">
-                                    <input name="email" type="text" id="email" class="form-control">
-                                    <label for="email">Email Address</label>
-                            </div>
-                        </div>
-                    </div>       
-                    <div class="row">
-                        <div class="col-12 text-center">   
-                                <button name="update" class="btn btn-dark btn-lg" type ="submit" id="update" value ="Update"> Update </button>
-                        </div>
-                    </div>
+                    
+                    <button name="update" class="btn btn-primary btn-block" type ="submit" id="update" value ="Update"> Update </button>
                </form>
             </div>
             <?php
          }
       ?>
+
 
 <!------------------------------------ PHP End---------------------------------------->
                 </table>           
