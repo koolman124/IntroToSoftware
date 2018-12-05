@@ -126,7 +126,7 @@
 <!------------------------------------ PHP Begin---------------------------------------->
 
 
-<h1>Upcoming Prescriptions</h1>
+<h1>My Prescriptions</h1>
 
 <?php
 
@@ -164,6 +164,15 @@ if($result=mysqli_query($conn,$sql)){
 				<tr>
                     <th>Doctor Phone</th>
 					<td> <?php echo $row['doctor_phone']; ?></td>
+					</br>
+				</tr>
+				<tr>
+                    <th>Pharmacy</th>
+					<td> <?php echo $row['pharmacy']; ?></td>
+				</tr>
+				<tr>
+                    <th>Pharmacy Phone</th>
+					<td> <?php echo $row['pharmacy_phone']; ?></td>
 					</br>
 				</tr>
 			</tbody>	 
