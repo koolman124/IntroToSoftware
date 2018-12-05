@@ -188,8 +188,8 @@ if($result=mysqli_query($conn,$sql)){
  
 
 <!------------------------------------ PHP End---------------------------------------->
-
-                           
+				
+               </table>            
               </div>
             </div>
             <div class="card-footer small text-muted"></div>
