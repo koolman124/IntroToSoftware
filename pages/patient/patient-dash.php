@@ -197,7 +197,8 @@ $row = mysqli_fetch_assoc($result);
 <?php
 }?>  
 <!------------------------------------ PHP End---------------------------------------->
-                  <a href="patient-update.php">Update info</a>
+                  
+                  <a class="btn btn-dark" href="patient-update.php">Update info</a>
                 </table>           
               </div>
             </div>

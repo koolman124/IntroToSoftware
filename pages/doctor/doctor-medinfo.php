@@ -430,7 +430,7 @@ if($result=mysqli_query($conn,$sql)){
                     <?php 
                       $patientid = $_GET['patient'];
 
-                      echo "</p> <a href=\"doctor-updatemed.php?patient=" . urlencode($patientid) . "\">  Update info  </a>";
+                      echo "</p> <a class='btn btn-dark' href=\"doctor-updatemed.php?patient=" . urlencode($patientid) . "\">  Update info  </a>";
                     ?>
                   
                   </table>

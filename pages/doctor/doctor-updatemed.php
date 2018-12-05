@@ -208,7 +208,11 @@
                             </div>
                         </div>
                     </div>       
-                    <button name="update" class="btn btn-primary btn-block" type ="submit" id="update" value ="Update"> Update </button>
+                    <div class="row">
+                        <div class="col-12 text-center">   
+                                <button name="update" class="btn btn-dark btn-lg" type ="submit" id="update" value ="Update"> Update </button>
+                        </div>
+                    </div>
                </form>
             </div>
             <?php
