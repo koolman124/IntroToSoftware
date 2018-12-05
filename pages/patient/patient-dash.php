@@ -90,7 +90,7 @@
         <li class="nav-item">
           <a class="nav-link" href="patient-rx.php">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Prescription</span></a>
+            <span>Prescription Records</span></a>
         </li>
     <!-- Prescription Records End -->
     <!-- Insurance Policy Start -->    
