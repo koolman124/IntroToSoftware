@@ -161,7 +161,7 @@
                         <form method="post" action="<?php $_PHP_SELF ?>">
                             <div class="form-group row">
                                 <div class="form-label-group col">
-                                    <input name="date" type="date" id="fname" class="form-control"></td>
+                                    <input name="date" type="date" id="fname" class="form-control" placeholder="yyyy-mm-dd" ></td>
                                     <label for="date">Date</label>
                                 </div>
                                 <div class="input-group col">
