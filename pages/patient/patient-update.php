@@ -122,82 +122,114 @@
 
 			<!--- Pass User_Account to point to specific Patient_ID hash--->
 			<!--- Add .js button and forms to edit user data, update db --->
-				
-<?php
-$uid = $_SESSION['userid'];
-$conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
-$sql = "SELECT * FROM Patient WHERE Patient_ID = '$uid'";
-if (mysqli_query($conn, $sql)) {
- 		echo "";
-} 
-else {
- 
-		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
- 
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result); 
-{ ?>
- 
-    		<tbody>
-                <tr>
-                      <th>Patient ID</th>
-                      <td> <?php echo $row['Patient_ID']; ?> </td>
-                </tr>
-                <tr>
-                      <th>First Name</th>
-                      <td> <?php echo $row['First_Name']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Last Name</th>
-                      <td> <?php echo $row['Last_Name']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Birth Date</th>
-                      <td> <?php echo $row['Birth_Date']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Social Security Number</th>
-                      <td> <?php echo $row['SSN']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Address</th>
-                      <td> <?php echo $row['Address']; ?> </td>
-                </tr>
-                <tr>
-                      <th>City</th>
-                      <td> <?php echo $row['City']; ?> </td>
-                </tr>
-                <tr>
-                      <th>State</th>
-                      <td> <?php echo $row['State']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Zip Code</th>
-                      <td> <?php echo $row['Zip_Code']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Race</th>
-                      <td> <?php echo $row['Race']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Sex</th>
-                      <td> <?php echo $row['Sex']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Phone</th>
-                      <td> <?php echo $row['Phone']; ?> </td>
-                </tr>
-                <tr>
-                      <th>Email</th>
-                      <td> <?php echo $row['Email']; ?> </td>
-                </tr>
-            </tbody>
 
 <?php
-}?>  
+		 $uid = $_SESSION['userid'];
+
+         if(isset($_POST['update'])) {
+            
+            
+            $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
+            
+            if(! $conn ) {
+               die('Could not connect: ' . mysqli_error($conn));
+            }
+            
+            $first_name = $_POST['fname'];
+            $last_name = $_POST['lname'];
+            $address = $_POST['address'];
+            $email = $_POST['email'];
+
+            if( isset($_POST['fname']) && !empty($_POST['fname']) )
+            {
+                $sql = "UPDATE Patient SET First_Name = '$first_name' WHERE Patient_ID = '$uid'";
+                              
+                $retval = mysqli_query($conn,$sql);
+                            
+                if(! $retval ) {
+                die('Could not update data: ' . mysqli_error($conn));
+                }
+            }
+
+            if( isset($_POST['lname']) && !empty($_POST['lname']) )
+            {
+                $sql = "UPDATE Patient SET Last_Name = '$last_name' WHERE Patient_ID = '$uid'";
+                              
+                $retval = mysqli_query($conn,$sql);
+                            
+                if(! $retval ) {
+                die('Could not update data: ' . mysqli_error($conn));
+                }
+            }
+
+            if( isset($_POST['address']) && !empty($_POST['address']) )
+            {
+                $sql = "UPDATE Patient SET Address = '$address' WHERE Patient_ID = '$uid'";
+                              
+                $retval = mysqli_query($conn,$sql);
+                            
+                if(! $retval ) {
+                die('Could not update data: ' . mysqli_error($conn));
+                }
+            }
+
+            if( isset($_POST['email']) && !empty($_POST['email']) )
+            {
+                $sql = "UPDATE Patient SET Email = '$email' WHERE Patient_ID = '$uid'";
+                              
+                $retval = mysqli_query($conn,$sql);
+                            
+                if(! $retval ) {
+                die('Could not update data: ' . mysqli_error($conn));
+                }
+            }
+            
+            echo "Updated data successfully\n";
+            
+            mysqli_close($conn);
+            
+         }else {
+            ?>
+            <div class="container">
+               <form method = "post" action ="<?php $_PHP_SELF ?>">
+                     <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                    <input name="fname" type="text" id="fname" class="form-control">
+                                    <label for="fname">First Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                    <input name="lname" type="text" id="lname" class="form-control">
+                                    <label for="lname">Last Name</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-label-group">
+                                    <input name="address" type="text" id="address" class="form-control">
+                                    <label for="address"> Address</label>
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-label-group">
+                                    <input name="email" type="text" id="email" class="form-control">
+                                    <label for="email">Email Address</label>
+                            </div>
+                        </div>
+                    </div>       
+                    <button name="update" class="btn btn-primary btn-block" type ="submit" id="update" value ="Update"> Update </button>
+               </form>
+            </div>
+            <?php
+         }
+      ?>
+
 <!------------------------------------ PHP End---------------------------------------->
-                  <a href="patient-update.php">Update info</a>
                 </table>           
               </div>
             </div>
