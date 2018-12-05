@@ -126,6 +126,11 @@
 			<!-- Add .JS Calendar or HTML Form to select an appointment date -->
 
 <!------------------------------------ PHP Begin---------------------------------------->
+<div class = "text-center">
+  <h3>Schedule an appointment</h3>
+</div>
+
+<br/>
 
 <?php
          if(isset($_POST['update'])) {

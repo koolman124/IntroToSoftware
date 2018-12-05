@@ -112,7 +112,7 @@
 <div id="content-wrapper">
         <div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> View/Refill Prescriptions</div>
+            <div class="card-header"><i class="fas fa-table"></i> My Prescriptions</div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered"  width="100%" cellspacing="0">
@@ -124,9 +124,6 @@
 					 
 					 
 <!------------------------------------ PHP Begin---------------------------------------->
-
-
-<h1>My Prescriptions</h1>
 
 <?php
 $uid = $_SESSION['userid'];
