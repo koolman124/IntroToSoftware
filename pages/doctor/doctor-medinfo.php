@@ -420,8 +420,8 @@ if($result=mysqli_query($conn,$sql)){
             
            // $sql = 'SELECT * FROM Patient WHERE Patient_ID = "0095-4213-9755"';
 
-            $sql = "UPDATE Patient SET First_Name = " . $first_name  "
-               WHERE Patient_ID = ' .$patient_id '";
+            $sql = "UPDATE Patient SET First_Name = '$first_name'
+               WHERE Patient_ID = ' $patient_id '";
                
             //$sql = "UPDATE employee ". "SET emp_salary = $emp_salary ". "WHERE emp_id = $emp_id" ;
                
