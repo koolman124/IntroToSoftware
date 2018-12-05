@@ -151,10 +151,6 @@ $row = mysqli_fetch_assoc($result);
                       <th>Patient ID</th>
                       <td> <?php echo $row['Patient_ID']; ?> </td>
                 </tr>
-                <tr>  
-                      <th>User ID:</th>
-                      <td></td>    
-                </tr>
                 <tr>
                       <th>First Name</th>
                       <td> <?php echo $row['First_Name']; ?> </td>
