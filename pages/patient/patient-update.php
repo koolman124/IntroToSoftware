@@ -34,7 +34,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Patient - Schedule an Appointment</title>
+    <title>Patient Dashboard</title>
 
     <!-- Bootstrap CSS-->
     <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -65,15 +65,15 @@
 <!------------------------------------Sidebar Start------------------------------------->
 	<!-- Dashboard Start -->
       <ul class="sidebar navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="patient-dash.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>My Info</span>
+            <span> My Info</span>
           </a>
         </li>
     <!-- Dashboard End -->
     <!-- Appointment Start -->    
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="patient-cal.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Appointments</span></a>
@@ -90,7 +90,7 @@
         <li class="nav-item">
           <a class="nav-link" href="patient-rx.php">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Prescription Records</span></a>
+            <span>Prescription</span></a>
         </li>
     <!-- Prescription Records End -->
     <!-- Insurance Policy Start -->    
@@ -110,90 +110,135 @@
       </ul>
 <!------------------------------------Sidebar End---------------------------------------->
 <!--------------------------------- Container Start ------------------------------------->
-
       <div id="content-wrapper">
-        <div class="container-fluid">
+		<div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> Appointments</div>
+            <div class="card-header"><i class="fas fa-table"></i> Patient Info</div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered"  width="100%" cellspacing="0">
-                	<thead>
-                    <tr>
-                    <th>Date</th>
-                    <th>Type</th>
-                    <th>Reason</th>
-                    <th>Doctors Name</th>
-                    <th>Doctors Email</th>
-                    </tr>
- 					        </thead>
                 
-                
-
-				<!-- Add .JS alert to remind patient of appointment -->
-			<!-- Add .JS Calendar or HTML Form to select an appointment date -->
-
 <!------------------------------------ PHP Begin---------------------------------------->
 
-<?php
-$uid = $_SESSION['userid'];
-$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewUpcomingAppts ('$uid', '1' );";
-
-if($result=mysqli_query($conn,$sql)){
-	while($row=mysqli_fetch_assoc($result)){ ?>
-	
-			
-	<script language="javascript">
-		alert("Alert: Upcoming Appointment");
-	</script>
-				 
-	<?php } ?>
-	<?php	}
- ?>
-
+			<!--- Pass User_Account to point to specific Patient_ID hash--->
+			<!--- Add .js button and forms to edit user data, update db --->
 
 <?php
-$uid = $_SESSION['userid'];
-$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-$sql = "CALL ViewUpcomingAppts ('$uid', '1' );";
+		 $uid = $_SESSION['userid'];
 
-if($result=mysqli_query($conn,$sql)){
-	while($row=mysqli_fetch_assoc($result)){ ?>
-	
-			<tbody>
-    
-					<tr>
-            <td>
-            <?php echo $row['Date']; ?>
-            </td>
-            <td> 
-            <?php echo $row['Type']; ?>
-            </td>
-            <td>
-            <?php echo $row['Reason']; ?>
-            </td>
-            <td>
-            <?php echo $row['DoctorName']; ?>
-            </td>
-            <td>
-            <?php echo $row['DoctorEmail']; ?>
-            </td>
-					</tr>
-			</tbody>	 
-	<?php } ?>
-	<?php	}
- ?>
- 
+         if(isset($_POST['update'])) {
+            
+            
+            $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
+            
+            if(! $conn ) {
+               die('Could not connect: ' . mysqli_error($conn));
+            }
+            
+            $first_name = $_POST['fname'];
+            $last_name = $_POST['lname'];
+            $address = $_POST['address'];
+            $email = $_POST['email'];
+
+            if( isset($_POST['fname']) && !empty($_POST['fname']) )
+            {
+                $sql = "UPDATE Patient SET First_Name = '$first_name' WHERE Patient_ID = '$uid'";
+                              
+                $retval = mysqli_query($conn,$sql);
+                            
+                if(! $retval ) {
+                die('Could not update data: ' . mysqli_error($conn));
+                }
+            }
+
+            if( isset($_POST['lname']) && !empty($_POST['lname']) )
+            {
+                $sql = "UPDATE Patient SET Last_Name = '$last_name' WHERE Patient_ID = '$uid'";
+                              
+                $retval = mysqli_query($conn,$sql);
+                            
+                if(! $retval ) {
+                die('Could not update data: ' . mysqli_error($conn));
+                }
+            }
+
+            if( isset($_POST['address']) && !empty($_POST['address']) )
+            {
+                $sql = "UPDATE Patient SET Address = '$address' WHERE Patient_ID = '$uid'";
+                              
+                $retval = mysqli_query($conn,$sql);
+                            
+                if(! $retval ) {
+                die('Could not update data: ' . mysqli_error($conn));
+                }
+            }
+
+            if( isset($_POST['email']) && !empty($_POST['email']) )
+            {
+                $sql = "UPDATE Patient SET Email = '$email' WHERE Patient_ID = '$uid'";
+                              
+                $retval = mysqli_query($conn,$sql);
+                            
+                if(! $retval ) {
+                die('Could not update data: ' . mysqli_error($conn));
+                }
+            }
+            
+            echo "Updated data successfully\n";
+            
+            mysqli_close($conn);
+            
+         }else {
+            ?>
+            <div class="container">
+               <form method = "post" action ="<?php $_PHP_SELF ?>">
+                     <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                    <input name="fname" type="text" id="fname" class="form-control">
+                                    <label for="fname">First Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                    <input name="lname" type="text" id="lname" class="form-control">
+                                    <label for="lname">Last Name</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-label-group">
+                                    <input name="address" type="text" id="address" class="form-control">
+                                    <label for="address"> Address</label>
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-label-group">
+                                    <input name="email" type="text" id="email" class="form-control">
+                                    <label for="email">Email Address</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">   
+                                <button name="update" class="btn btn-dark btn-lg" type ="submit" id="update" value ="Update"> Update </button>
+                        </div>
+                    </div>
+               </form>
+            </div>
+            <?php
+         }
+      ?>
 
 <!------------------------------------ PHP End---------------------------------------->
-                  <a class="btn btn-dark" href="patient-appointment.php">Schedule an Appointment</a>
-                </table>         
+                </table>           
               </div>
             </div>
             <div class="card-footer small text-muted"></div>
           </div>
-
         </div>
         <!-- /.container-fluid -->
 
@@ -216,7 +261,6 @@ if($result=mysqli_query($conn,$sql)){
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fas fa-angle-up"></i>
     </a>
-    
 <!---------------------------------- Container End -------------------------------------->   
    
     <!-- Bootstrap JavaScript-->

@@ -196,56 +196,9 @@ $row = mysqli_fetch_assoc($result);
 
 <?php
 }?>  
-
-<?php
-		 $uid = $_SESSION['userid'];
-
-         if(isset($_POST['update'])) {
-            
-            
-            $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
-            
-            if(! $conn ) {
-               die('Could not connect: ' . mysqli_error($conn));
-            }
-            
-            //$patient_id = '0095-4213-9755';
-            $first_name = $_POST['fname'];
-            
-            $sql = "UPDATE Patient SET First_Name = '$first_name' WHERE Patient_ID = '$uid'";
-                              
-			$retval = mysqli_query($conn,$sql);
-			            
-            if(! $retval ) {
-               die('Could not update data: ' . mysqli_error($conn));
-            }
-            echo "Updated data successfully\n";
-            
-            mysqli_close($conn);
-            
-         }else {
-            ?>
-               <form method = "post" action ="<?php $_PHP_SELF ?>">
-                  <table width = "400" border =" 0" cellspacing = "1" 
-                     cellpadding = "2">
-                  
-                     <tr>
-                        <td width = "100">First Name</td>
-                        <td><input name="fname" type="text" id="fname" class="form-control"></td>
-                     </tr>
-                        <td>
-                           <button name="update" class="btn btn-primary btn-block" type ="submit" id="update" value ="Update"> Update </button>
-                        </td>
-                     </tr>
-                  
-                  </table>
-               </form>
-            <?php
-         }
-      ?>
-
 <!------------------------------------ PHP End---------------------------------------->
-
+                  
+                  <a class="btn btn-dark" href="patient-update.php">Update info</a>
                 </table>           
               </div>
             </div>

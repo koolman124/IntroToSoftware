@@ -12,12 +12,12 @@
   	header("location: ../../login.php");
   }
   
-  if ($_SESSION['access']== 3)
+  if ($_SESSION['access']== 1)
   {
-    $_SESSION['msg'] = "You are a doctor";
-  	header('location: ../doctor/doctor-dash.php');
+    $_SESSION['msg'] = "You are a patient";
+  	header('location: ../patient/patient-dash.php');
   }
-  if ($_SESSION['access']== 2)
+  if ($_SESSION['access']== 3)
   {
     $_SESSION['msg'] = "You are pharmacy";
   	header('location: ../pharmacy/pharm-dash.php');
@@ -34,7 +34,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Patient - Schedule an Appointment</title>
+    <title>Patient Dashboard</title>
 
     <!-- Bootstrap CSS-->
     <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -48,7 +48,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="patient-dash.php">EMR Portal</a>
+      <a class="navbar-brand mr-1" href="doctor-dash.php">EMR Portal</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -64,42 +64,28 @@
 
 <!------------------------------------Sidebar Start------------------------------------->
 	<!-- Dashboard Start -->
-      <ul class="sidebar navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="patient-dash.php">
+    <ul class="sidebar navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="doctor-dash.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>My Info</span>
+            <span> Patients Summary</span>
           </a>
         </li>
     <!-- Dashboard End -->
     <!-- Appointment Start -->    
-        <li class="nav-item active">
-          <a class="nav-link" href="patient-cal.php">
+        <li class="nav-item">
+          <a class="nav-link" href="doctor-cal.php">
             <i class="fas fa-fw fa-table"></i>
-            <span>Appointments</span></a>
+            <span>Upcoming Appointments</span></a>
         </li>
     <!-- Appointment End -->
-     <!-- View Med Info Start -->    
-        <li class="nav-item">
-          <a class="nav-link" href="patient-med.php">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>View Medical Info</span></a>
-        </li>
-    <!-- View Med Info End -->
     <!-- Prescription Records Start -->    
         <li class="nav-item">
-          <a class="nav-link" href="patient-rx.php">
+          <a class="nav-link" href="doctor-rx.php">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Prescription Records</span></a>
+            <span>Prescriptions</span></a>
         </li>
     <!-- Prescription Records End -->
-    <!-- Insurance Policy Start -->    
-        <li class="nav-item">
-          <a class="nav-link" href="patient-insurance.php">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>View Insurance Policy</span></a>
-        </li>
-    <!-- Insurance Policy End -->
     <!-- Test PHP/mySQL connection -->    
     <li class="nav-item">
           <a class="nav-link" href="../../index.php?logout='1'">
@@ -110,24 +96,22 @@
       </ul>
 <!------------------------------------Sidebar End---------------------------------------->
 <!--------------------------------- Container Start ------------------------------------->
-
       <div id="content-wrapper">
-        <div class="container-fluid">
+		<div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> Appointments</div>
+            <div class="card-header"><i class="fas fa-table"></i> Patient Info</div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered"  width="100%" cellspacing="0">
-                    
                 
-                
-
-				<!-- Add .JS alert to remind patient of appointment -->
-			<!-- Add .JS Calendar or HTML Form to select an appointment date -->
-
 <!------------------------------------ PHP Begin---------------------------------------->
 
+			<!--- Pass User_Account to point to specific Patient_ID hash--->
+			<!--- Add .js button and forms to edit user data, update db --->
+
 <?php
+		 $patientid = $_GET['patient'];
+
          if(isset($_POST['update'])) {
             
             
@@ -137,85 +121,110 @@
                die('Could not connect: ' . mysqli_error($conn));
             }
             
-            $appt_id = rand() * 1000000;
-            $uid = $_SESSION['userid'];
-            $date = $_POST['date'];
-            $doc = $_POST['doctor'];
+            $first_name = $_POST['fname'];
+            $last_name = $_POST['lname'];
+            $address = $_POST['address'];
+            $email = $_POST['email'];
 
-            
-            $query = "INSERT INTO `Appointment`(`Appointment_ID`,`Date`,`Patient_ID`, `Appt_Type`,`Condition_ID`,`Doctor_ID`)
-                VALUES('$appt_id','$date','$uid','Consultation for treatment',NULL,$doc)";
+            if( isset($_POST['fname']) && !empty($_POST['fname']) )
+            {
+                $sql = "UPDATE Patient SET First_Name = '$first_name' WHERE Patient_ID = '$patientid'";
                               
-			$retval = mysqli_query($conn,$query);
-			            
-            if(! $retval ) {
-               die('Could not update data: ' . mysqli_error($conn));
+                $retval = mysqli_query($conn,$sql);
+                            
+                if(! $retval ) {
+                die('Could not update data: ' . mysqli_error($conn));
+                }
             }
+
+            if( isset($_POST['lname']) && !empty($_POST['lname']) )
+            {
+                $sql = "UPDATE Patient SET Last_Name = '$last_name' WHERE Patient_ID = '$patientid'";
+                              
+                $retval = mysqli_query($conn,$sql);
+                            
+                if(! $retval ) {
+                die('Could not update data: ' . mysqli_error($conn));
+                }
+            }
+
+            if( isset($_POST['address']) && !empty($_POST['address']) )
+            {
+                $sql = "UPDATE Patient SET Address = '$address' WHERE Patient_ID = '$patientid'";
+                              
+                $retval = mysqli_query($conn,$sql);
+                            
+                if(! $retval ) {
+                die('Could not update data: ' . mysqli_error($conn));
+                }
+            }
+
+            if( isset($_POST['email']) && !empty($_POST['email']) )
+            {
+                $sql = "UPDATE Patient SET Email = '$email' WHERE Patient_ID = '$patientid'";
+                              
+                $retval = mysqli_query($conn,$sql);
+                            
+                if(! $retval ) {
+                die('Could not update data: ' . mysqli_error($conn));
+                }
+            }
+            
             echo "Updated data successfully\n";
             
             mysqli_close($conn);
             
          }else {
             ?>
-               <div class="container">
-                        <form method="post" action="<?php $_PHP_SELF ?>">
-                            <div class="form-group row">
-                                <div class="form-label-group col">
-                                    <input name="date" type="date" id="fname" class="form-control" placeholder="yyyy-mm-dd" ></td>
-                                    <label for="date">Date</label>
-                                </div>
-                                <div class="input-group col">
-                                <div class="input-group-prepend">
-                                <?php 
-                                    $conn = new mysqli("localhost", "root", "troublein421", "HealthcareDB");
-                                    $sql = 'SELECT * from Doctor';
-                                    if (mysqli_query($conn, $sql)) {
-                                        echo "";
-                                    } 
-                                    else {
-                                        
-                                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-                                    }
-                                        
-                                    $count=1;
-                                    $result = mysqli_query($conn, $sql);
-                                        
-                                    if (mysqli_num_rows($result) > 0) {
-                                    // output data of each row 
-                                    $x=0;
-                                    while($x < 5) {
-                                        $row = mysqli_fetch_assoc($result);
-                                        echo "<input type='radio' class='list-group-item list-group-item-action' id='doctor' name='doctor' value=$row[Doctor_ID]"; echo">"; echo $row['First_Name'];?> <?php echo $row['Last_Name']; echo "</input>";
-                                        ++$x;
-                                    }
-                                    echo "</div>";
-                                    while($row = mysqli_fetch_assoc($result)) { ?>
-                                    
-                                    <?php
-                                    $count++;
-                                    }
-                                    } else {
-                                    echo '0 results';
-                                    }?>  
-                                
-                                </div>
+            <div class="container">
+               <form method = "post" action ="<?php $_PHP_SELF ?>">
+                     <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                    <input name="fname" type="text" id="fname" class="form-control">
+                                    <label for="fname">First Name</label>
                             </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                    <input name="lname" type="text" id="lname" class="form-control">
+                                    <label for="lname">Last Name</label>
                             </div>
-                            <button name="update" class="btn btn-dark btn-block" type ="submit" id="update" value ="Update"> Schedule </button>
-                        </form>
-                </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-label-group">
+                                    <input name="address" type="text" id="address" class="form-control">
+                                    <label for="address"> Address</label>
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-label-group">
+                                    <input name="email" type="text" id="email" class="form-control">
+                                    <label for="email">Email Address</label>
+                            </div>
+                        </div>
+                    </div>       
+                    <div class="row">
+                        <div class="col-12 text-center">   
+                                <button name="update" class="btn btn-dark btn-lg" type ="submit" id="update" value ="Update"> Update </button>
+                        </div>
+                    </div>
+               </form>
+            </div>
             <?php
          }
       ?>
- 
 
 <!------------------------------------ PHP End---------------------------------------->
-                </table> 
+                </table>           
               </div>
             </div>
             <div class="card-footer small text-muted"></div>
           </div>
-
         </div>
         <!-- /.container-fluid -->
 
@@ -238,7 +247,6 @@
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fas fa-angle-up"></i>
     </a>
-    
 <!---------------------------------- Container End -------------------------------------->   
    
     <!-- Bootstrap JavaScript-->

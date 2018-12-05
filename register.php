@@ -22,32 +22,30 @@
 <body class="bg-dark">
 
     <div class="container">
-      <div class="card card-register mx-auto mt-5">
+      <div class="card card-login mx-auto mt-5">
         <div class="card-header">Register an Account</div>
         <div class="card-body">
           <form method="post" action="register.php">
-					<?php include('errors.php'); ?>
+          <?php include('errors.php'); ?>   
             <div class="form-group">
-							<div class="form-label-group">
+              <div class="form-label-group">
                 <input type="text" id="inputUser" name="username" class="form-control" placeholder="Username" required="required" value="<?php echo $username; ?>">
                 <label for="inputUser">Username</label>
               </div>
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="password" id="inputPassword" name="password_1" class="form-control" placeholder="Password" required="required">
-                    <label for="inputPassword">Password</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="password" id="confirmPassword" name="password_2" class="form-control" placeholder="Confirm password" required="required">
-                    <label for="confirmPassword">Confirm password</label>
-                  </div>
-                </div>
+            </div>
+            <div class="form-group">
+              <div class="form-label-group">
+                  <input type="password" id="inputPassword" name="password_1" class="form-control" placeholder="Password" required="required">
+                  <label for="inputPassword">Password</label>
+              </div>
+              </div>
+            <div class="form-group">
+              <div class="form-label-group">
+                  <input type="password" id="confirmPassword" name="password_2" class="form-control" placeholder="Confirm password" required="required">
+                  <label for="confirmPassword">Confirm password</label>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-block" name="reg_user">Register</button>
+            <button type="submit" class="btn btn-dark btn-block" name="reg_user">Register</button>
           </form>
           <div class="text-center">
             <a class="d-block small mt-3" href="login.php">Login Page</a>
