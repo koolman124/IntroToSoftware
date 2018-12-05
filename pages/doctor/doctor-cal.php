@@ -121,6 +121,22 @@
                 
 <!------------------------------------ PHP Begin---------------------------------------->
 
+<?php
+$uid = $_SESSION['userid'];
+$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
+$sql = "CALL ViewUpcomingAppts ('$uid', '2' );";
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			
+	<script language="javascript">
+		alert("Alert: Upcoming Appointment");
+	</script>
+				 
+	<?php } ?>
+	<?php	}
+ ?>
                 
 <?php
 $uid = $_SESSION['userid'];
