@@ -200,6 +200,209 @@ $row = mysqli_fetch_assoc($result);
 <?php
 }?>  
 
+<?php
+$patientid = $_GET['patient'];
+
+$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
+$sql = "CALL ViewMedicalInfo ('$patientid', 'allergy');";
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			<tbody>
+                <tr>
+                    <th>Allergy Name</th>
+					<td> <?php echo $row['description']; ?></td>
+				</tr>
+				<tr>
+                    <th>Start Date</th>
+					<td> <?php echo $row['start_date']; ?></td>
+				</tr>
+				<tr>
+                    <th>End Date</th>
+					<td> <?php echo $row['end_date']; ?></td>
+				</tr>
+			</tbody>	 
+	
+	<?php } ?>
+	<?php	}
+ ?>
+
+
+<?php
+$patientid = $_GET['patient'];
+
+$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
+$sql = "CALL ViewMedicalInfo ('$patientid', 'med_condition');";
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			<tbody>
+                <tr>
+                    <th>Medical Condition</th>
+					<td> <?php echo $row['description']; ?></td>
+				</tr>
+				<tr>
+                    <th>Start Date</th>
+					<td> <?php echo $row['start_date']; ?></td>
+				</tr>
+				<tr>
+                    <th>End Date</th>
+					<td> <?php echo $row['end_date']; ?></td>
+				</tr>
+			</tbody>	 
+	
+	<?php } ?>
+
+	<?php	}
+ ?>
+    
+ <?php
+$patientid = $_GET['patient'];
+
+$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
+$sql = "CALL ViewMedicalInfo ('$patientid', 'immunization');";
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			<tbody>
+                <tr>
+                    <th>Immunization Description</th>
+					<td> <?php echo $row['description']; ?></td>
+				</tr>
+				<tr>
+                    <th>Date</th>
+					<td> <?php echo $row['date']; ?></td>
+				</tr>
+			</tbody>	 
+	
+	<?php } ?>
+
+	<?php	}
+ ?>
+
+<?php
+$patientid = $_GET['patient'];
+
+$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
+$sql = "CALL ViewMedicalInfo ('$patientid', 'surgery');";
+
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			<tbody>
+                <tr>
+                    <th>Surgery</th>
+					<td> <?php echo $row['surgery']; ?></td>
+				</tr>
+				<tr>
+                    <th>Reason</th>
+					<td> <?php echo $row['reason']; ?></td>
+				</tr>
+				<tr>
+                    <th>Date</th>
+					<td> <?php echo $row['date']; ?></td>
+				</tr>
+			</tbody>	 
+	
+	<?php } ?>
+
+	<?php	}
+ ?>
+ 
+ <?php
+$patientid = $_GET['patient'];
+
+$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
+$sql = "CALL ViewMedicalInfo ('$patientid', 'treatment');";
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			<tbody>
+                <tr>
+                    <th>Treatment</th>
+					<td> <?php echo $row['description']; ?></td>
+				</tr>
+				<tr>
+                    <th>Start Date</th>
+					<td> <?php echo $row['start_date']; ?></td>
+				</tr>
+				<tr>
+                    <th>End Date</th>
+					<td> <?php echo $row['end_date']; ?></td>
+				</tr>
+				<tr>
+                    <th>Reason</th>
+					<td> <?php echo $row['reason']; ?></td>
+				</tr>
+			</tbody>	 
+	
+	<?php } ?>
+
+	<?php	}
+ ?> 
+
+<?php
+$patientid = $_GET['patient'];
+
+$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
+$sql = "CALL ViewMedicalInfo ('$patientid', 'medication');";
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			<tbody>
+                <tr>
+                    <th>Medication Name</th>
+					<td> <?php echo $row['medication']; ?></td>
+				</tr>
+				<tr>
+                    <th>Reason</th>
+					<td> <?php echo $row['reason']; ?></td>
+				</tr>
+				<tr>
+                    <th>Start Date</th>
+					<td> <?php echo $row['start_date']; ?></td>
+				</tr>
+				<tr>
+                    <th>End Date</th>
+					<td> <?php echo $row['end_date']; ?></td>
+				</tr>
+			</tbody>	 
+	
+	<?php } ?>
+
+	<?php	}
+ ?>
+
+ <?php
+$patientid = $_GET['patient'];
+
+$conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
+$sql = "CALL ViewMedicalInfo ('$patientid', 'medical_data');";
+
+if($result=mysqli_query($conn,$sql)){
+	while($row=mysqli_fetch_assoc($result)){ ?>
+	
+			<tbody>
+                <tr>
+                    <th> <?php echo $row['type']; ?></th>
+					<td> <?php echo $row['data']; ?></td>
+				</tr>
+				<tr>
+                    <th>Date</th>
+					<td> <?php echo $row['date']; ?></td>
+				</tr>
+			</tbody>	 
+	
+	<?php } ?>
+
+	<?php	}
+ ?>
 <!------------------------------------ PHP End---------------------------------------->
 
                 </table>
