@@ -17,7 +17,7 @@
     $_SESSION['msg'] = "You are a patient";
   	header('location: ../patient/patient-dash.php');
   }
-  if ($_SESSION['access']== 2)
+  if ($_SESSION['access']== 3)
   {
     $_SESSION['msg'] = "You are pharmacy";
   	header('location: ../pharmacy/pharm-dash.php');

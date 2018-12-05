@@ -43,7 +43,7 @@ if (isset($_POST['reg_user'])) {
   	$password = md5($password_1);//encrypt the password before saving in the database
 
   	$query = "INSERT INTO `users`(`User_ID`, `Access_Level`, `Username`, `Password_Hash`)
-  			  VALUES('0095-4243-9223','1','$username','$password')";
+  			  VALUES('323829748972','2','$username','$password')";
   	mysqli_query($db, $query);
   	$_SESSION['username'] = $username;
   	$_SESSION['success'] = "You are now logged in";

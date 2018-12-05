@@ -17,12 +17,12 @@
     $_SESSION['msg'] = "You are patient";
   	header('location: /pages/patient/patient-dash.php');
   }
-  if ($_SESSION['access']== 2)
+  if ($_SESSION['access']== 3)
   {
     $_SESSION['msg'] = "You are pharmacy";
   	header('location: /pages/pharmacy/pharm-dash.php');
   }
-  if ($_SESSION['access']== 3)
+  if ($_SESSION['access']== 2)
   {
     $_SESSION['msg'] = "You are a doctor";
   	header('location: /pages/doctor/doctor-dash.php');
