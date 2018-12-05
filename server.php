@@ -13,14 +13,12 @@ $db = mysqli_connect("localhost", "root", "troublein421", "HealthcareDB");
 if (isset($_POST['reg_user'])) {
   // receive all input values from the form
   $username = mysqli_real_escape_string($db, $_POST['username']);
-  $email = mysqli_real_escape_string($db, $_POST['email']);
   $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
   $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
 
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
   if (empty($username)) { array_push($errors, "Username is required"); }
-  if (empty($email)) { array_push($errors, "Email is required"); }
   if (empty($password_1)) { array_push($errors, "Password is required"); }
   if ($password_1 != $password_2) {
 	array_push($errors, "The two passwords do not match");
@@ -45,7 +43,8 @@ if (isset($_POST['reg_user'])) {
   	$query = "INSERT INTO `users`(`User_ID`, `Access_Level`, `Username`, `Password_Hash`)
   			  VALUES('323829748972','2','$username','$password')";
   	mysqli_query($db, $query);
-  	$_SESSION['username'] = $username;
+    $_SESSION['username'] = $username;
+    $_SESSION['access'] = '2';
   	$_SESSION['success'] = "You are now logged in";
   	header('location: index.php');
   }

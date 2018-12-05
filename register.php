@@ -28,10 +28,6 @@
           <form method="post" action="register.php">
 					<?php include('errors.php'); ?>
             <div class="form-group">
-              <div class="form-label-group">
-                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required="required" value="<?php echo $email; ?>">
-                <label for="inputEmail">Email address</label>
-							</div>
 							<div class="form-label-group">
                 <input type="text" id="inputUser" name="username" class="form-control" placeholder="Username" required="required" value="<?php echo $username; ?>">
                 <label for="inputUser">Username</label>
