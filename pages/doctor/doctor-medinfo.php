@@ -144,10 +144,6 @@ $row = mysqli_fetch_assoc($result);
                       <th>Patient ID</th>
                       <td> <?php echo $row['Patient_ID']; ?> </td>
                 </tr>
-                <tr>  
-                      <th>User ID:</th>
-                      <td></td>    
-                </tr>
                 <tr>
                       <th>First Name</th>
                       <td> <?php echo $row['First_Name']; ?> </td>
@@ -438,22 +434,10 @@ if($result=mysqli_query($conn,$sql)){
                   
                      <tr>
                         <td width = "100">First Name</td>
-                        <td><input name = "fname" type = "text" 
-                           id = "first_name"></td>
+                        <td><input name = "fname" type = "text" ></td>
                      </tr>
-                  
-                    
-                  
-                     <tr>
-                        <td width = "100"> </td>
-                        <td> </td>
-                     </tr>
-                  
-                     <tr>
-                        <td width = "100"> </td>
                         <td>
-                           <input name = "update" type = "submit" 
-                              id = "update" value = "Update">
+                           <input name = "update" type = "submit" id = "update" value = "Update">
                         </td>
                      </tr>
                   
