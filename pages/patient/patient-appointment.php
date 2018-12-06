@@ -156,7 +156,7 @@
             
             $appt_id = rand() * 1000000;
             $uid = $_SESSION['userid'];
-            $date = $_POST['date'];
+            $date = $_POST['Date'];
             $doc = $_POST['doctor'];
 
             
@@ -178,8 +178,8 @@
                         <form method="post" action="<?php $_PHP_SELF ?>">
                             <div class="form-group row">
                                 <div class="form-label-group col">
-                                    <input name="date" type="date" id="fname" class="form-control" placeholder="yyyy-mm-dd" ></td>
-                                    <label for="date">Date</label>
+                                    <input name="Date" type="Date" id="Date" class="form-control" placeholder="yyyy-mm-dd" ></td>
+                                    <label for="Date">Date (format YYYY-MM-DD)</label>
                                 </div>
                                 <div class="input-group col">
                                 <div class="input-group-prepend">
