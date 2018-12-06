@@ -470,16 +470,16 @@ if($result=mysqli_query($conn,$sql)){
             if( isset($_POST['Medication_ID']) && !empty($_POST['Medication_ID']) )
             {
                 //select writescript(410456, '0123-496d-9f4e', 197378, null, null);
-                $sql = "SELECT WriteScript('230532','$patientid', "."$_POST['$medicine']".",'308192','2134001') ";
+                $sql = "SELECT WriteScript('230532','$patientid', $_POST['$medicine'],'308192','2134001') ";
                 //"UPDATE Patient_Allergy SET Allergy_ID = '$allergy' WHERE Patient_ID = '$patientid'";
                 //CALL WriteScript ('230532','$patientid', '308192','43878008','2134001');
                 //SET @p0='230532'; SET @p1='0095-4213-9755'; SET @p2='308192'; 
                 //SET @p3='43878008'; SET @p4='2134001'; 
                 //CALL `WriteScript`(@p0, @p1, @p2, @p3, @p4, @p5); SELECT @p5 AS `errorcode`;              
                 //CALL WriteScript ('230532','0095-4213-9755', '308192','43878008','2134001', @errorcode);
-				//$sql = "select @errorcode";
-				//$sql = "INSERT INTO table_name (name) VALUES 
-      				//('".$_POST["Medication_ID"]."')";
+				        //$sql = "select @errorcode";
+				        //$sql = "INSERT INTO table_name (name) VALUES 
+      			  	//('".$_POST["Medication_ID"]."')";
 
   				if ($retval = mysqli_query($conn,$sql)) === TRUE) {
      					echo "New record created successfully";
