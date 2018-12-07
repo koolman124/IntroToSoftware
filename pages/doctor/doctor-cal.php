@@ -139,7 +139,7 @@ $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
 $sql = "CALL ViewUpcomingAppts ('$uid', '2' );";
 
 if($result=mysqli_query($conn,$sql)){
-	while($row=mysqli_fetch_assoc($result)){ ?>
+	if(mysqli_num_rows($result) > 0){ ?>
 	
 			
 	<script language="javascript">
