@@ -159,8 +159,9 @@ if($result=mysqli_query($conn,$sql)){
 	<script language="javascript">
 		alert("Alert: Upcoming Appointment");
 	</script>
-				 
-	<?php } ?>
+          
+           
+	<?php break; } ?>
 	<?php	}
  ?>
 
