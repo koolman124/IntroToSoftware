@@ -161,7 +161,7 @@ if($result=mysqli_query($conn,$sql)){
 	</script>
           
            
-	<?php break; } ?>
+	<?php } ?>
 	<?php	}
  ?>
 
