@@ -179,7 +179,7 @@
                             <div class="form-group row">
                                 <div class="form-label-group col">
                                     <input name="Date" type="Date" id="Date" class="form-control" placeholder="yyyy-mm-dd" ></td>
-                                    <label for="Date">Date (format YYYY-MM-DD)</label>
+                                    <label for="Date"> Date (format YYYY-MM-DD)</label>
                                 </div>
                                 <div class="input-group col">
                                 <div class="input-group-prepend">
