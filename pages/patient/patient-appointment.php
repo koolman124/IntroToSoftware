@@ -159,19 +159,27 @@
             $date = $_POST['Date'];
             $doc = $_POST['doctor'];
 
-            
-            $query = "INSERT INTO `Appointment`(`Appointment_ID`,`Date`,`Patient_ID`, `Appt_Type`,`Condition_ID`,`Doctor_ID`)
-                VALUES('$appt_id','$date','$uid','Consultation for treatment',NULL,$doc)";
-                              
-			$retval = mysqli_query($conn,$query);
-			            
-            if(! $retval ) {
-               die('Could not update data: ' . mysqli_error($conn));
+            $sql = "SELECT * FROM Appointment WHERE Patient_ID = '$uid' AND Date = '$date'";
+            $result = mysqli_query($conn, $sql);
+ 
+            if (mysqli_num_rows($result) >= 1) 
+            {
+              echo "date taken";
             }
-            echo "Updated data successfully\n";
-            
-            mysqli_close($conn);
-            
+            else
+            {
+              $query = "INSERT INTO `Appointment`(`Appointment_ID`,`Date`,`Patient_ID`, `Appt_Type`,`Condition_ID`,`Doctor_ID`)
+                  VALUES('$appt_id','$date','$uid','Consultation for treatment',NULL,$doc)";
+                                
+              $retval = mysqli_query($conn,$query);
+                    
+              if(! $retval ) {
+                die('Could not update data: ' . mysqli_error($conn));
+              }
+              echo "Updated data successfully\n";
+              
+              mysqli_close($conn);
+            }
          }else {
             ?>
                <div class="container">
