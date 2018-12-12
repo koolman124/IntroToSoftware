@@ -164,7 +164,7 @@
  
             if (mysqli_num_rows($result) >= 1) 
             {
-              echo "date taken";
+              echo "Date taken. Please choose another date!";
             }
             else
             {
@@ -176,7 +176,7 @@
               if(! $retval ) {
                 die('Could not update data: ' . mysqli_error($conn));
               }
-              echo "Updated data successfully\n";
+              echo "Scheduled an appointment successfully\n";
               
               mysqli_close($conn);
             }
