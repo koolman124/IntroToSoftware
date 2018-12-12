@@ -123,7 +123,7 @@
 <!------------------------------------Sidebar End---------------------------------------->
 <!--------------------------------- Container Start ------------------------------------->
       <div id="content-wrapper">
-		<div class="container-fluid">
+		    <div class="container-fluid">
           <div class="card mb-3">
             <div class="card-header"><i class="fas fa-table"></i> Patient Info</div>
             <div class="card-body">
@@ -245,11 +245,7 @@ $row = mysqli_fetch_assoc($result);
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="../../vendor/chart.js/Chart.min.js"></script>
-    <script src="../../vendor/datatables/jquery.dataTables.js"></script>
-    <script src="../../vendor/datatables/dataTables.bootstrap4.js"></script>
     <script src="../../js/sb-admin.min.js"></script>
-    <script src="../../js/demo/datatables-demo.js"></script>
-    <script src="../../js/demo/chart-area-demo.js"></script>
 
   </body>
 
