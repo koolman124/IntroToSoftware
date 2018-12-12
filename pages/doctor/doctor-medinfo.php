@@ -467,7 +467,7 @@ if($result=mysqli_query($conn,$sql)){
             
             if ($result == FALSE)
             {
-              echo "Patient is allergic to medication, Prescription not filled";
+              echo "Patient is allergic to Medication, Prescription not filled";
             }
             else
             {
