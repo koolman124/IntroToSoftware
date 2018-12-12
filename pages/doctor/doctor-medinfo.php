@@ -450,6 +450,60 @@ if($result=mysqli_query($conn,$sql)){
             <?php
          }
       ?>
+
+<?php
+         $patientid = $_GET['patient']; 
+         if(isset($_POST['update'])) {
+            
+            
+            $conn = mysqli_connect("localhost","root","troublein421","HealthcareDB");
+            
+            if(! $conn ) {
+               die('Could not connect: ' . mysqli_error($conn));
+            }
+            $Medication_ID = $_POST['Medication_ID'];
+            $sql = "SELECT WriteScript ('230532', '$patientid', '$Medication_ID', '43878008','2134001')"; 
+            $result = mysqli_query($conn, $sql);
+            
+            if ($result == FALSE)
+            {
+              echo "Patient is allergic to Medication, Prescription not filled";
+            }
+            else
+            {
+             
+              $query = "SELECT WriteScript ('230532', '$patientid', '$Medication_ID', '43878008','2134001')"; 
+              $retval = mysqli_query($conn,$query);
+                    
+              if(! $retval ) {
+                die('Could not update data: ' . mysqli_error($conn));
+              }
+              
+              
+              mysqli_close($conn);
+            }
+         }else {
+            ?>
+               <div class="container">
+                        <form method="post" action="<?php $_PHP_SELF ?>">
+                            <div class="form-group row">
+                                <div class="form-label-group col">
+                                    <input name="Medication_ID" type="text" id="Medication_ID" class="form-control" placeholder="Medication_ID" ></td>
+                                    <label for="Medication_ID"> Medication_ID</label>
+                                </div>
+                                <div class="input-group col">
+                                <div class="input-group-prepend">
+                                </div>
+                            </div>
+                            </div>
+                            <button name="update" class="btn btn-dark btn-block" type ="submit" id="update" value ="Update"> Write Prescription </button>
+                        </form>
+                </div>
+            <?php
+         }
+      ?>
+
+
     
 
 <!------------------------------------ PHP End---------------------------------------->
