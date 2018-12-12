@@ -460,29 +460,17 @@ if($result=mysqli_query($conn,$sql)){
             
             if(! $conn ) {
                die('Could not connect: ' . mysqli_error($conn));
-            }
+                          }
             $Medication_ID = $_POST['Medication_ID'];
             $sql = "SELECT WriteScript ('230532', '$patientid', '$Medication_ID', '43878008','2134001')"; 
             $result = mysqli_query($conn, $sql);
-            
+
             if ($result == FALSE)
             {
               echo "Patient is allergic to Medication, Prescription not filled";
             }
-            else
-            {
-             
-              $query = "SELECT WriteScript ('230532', '$patientid', '$Medication_ID', '43878008','2134001')"; 
-              $retval = mysqli_query($conn,$query);
-                    
-              if(! $retval ) {
-                die('Could not update data: ' . mysqli_error($conn));
-              }
-              
-              
-              mysqli_close($conn);
-            }
-         }else {
+  }
+         else {
             ?>
                <div class="container">
                         <form method="post" action="<?php $_PHP_SELF ?>">
