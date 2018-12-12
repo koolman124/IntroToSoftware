@@ -496,7 +496,7 @@ if($result=mysqli_query($conn,$sql)){
                                 </div>
                             </div>
                             </div>
-                            <button name="update" class="btn btn-dark btn-block" type ="submit" id="update" value ="Update"> Schedule </button>
+                            <button name="update" class="btn btn-dark btn-block" type ="submit" id="update" value ="Update"> Write Prescription </button>
                         </form>
                 </div>
             <?php
