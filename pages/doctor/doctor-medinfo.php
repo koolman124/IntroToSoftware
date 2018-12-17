@@ -465,7 +465,7 @@ if($result=mysqli_query($conn,$sql)){
             $sql = "SELECT WriteScript ('230532', '$patientid', '$Medication_ID', '43878008','2134001')"; 
             $result = mysqli_query($conn, $sql);
 
-            if ($result == FALSE) // need to convert obj to int for comaparison
+            if ($result == FALSE) 
             {
               echo "Patient is allergic to Medication, Prescription not filled";
             }
